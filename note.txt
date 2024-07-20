@@ -1,0 +1,43 @@
+**routes: thu muc dieu huong URL
+.env: evirinment
++ file cau hinh
++ sua .env => clear config => cache lai config:  php artisan config:cache
+
+**database:
+ + Migration:
+  + Cac file php: tao, sua, xoa voi database
+  + 
+**Controller:
+  + resource controller
+**Model:
+ + lien ket model voi Migration
+ + Eloquent model => model duoc lien ket voi migration
+
+ + ORM (object ralated mapping)
+   + code => luu xuong database
+   + db => doc len luu thanh object
+
+**Controller --> view
+ + compact($data)
+ + with('key','data')
+
+**ham route(): dung cho action post/get
+**csrf: @csrf
+
+**Seeder: tao du lieu mau: 
+ + composer dump-autoload 
+ + php artisan db:seed
+
+**Request authen
+
+**midderware: đăng ký vào kernel
+
+**Phan quyen:
+
++ roles: admin, user
+
+**model: role - migration
+
+**npm: cai goi JS
+
+
