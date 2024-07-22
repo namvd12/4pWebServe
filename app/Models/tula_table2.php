@@ -6,10 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\convertDb;
 use App\Models\tula_table1;
-use Intervention\Image\ImageManager;
-use Intervention\Image\Drivers\Gd\Driver;
 
-use function PHPUnit\Framework\isEmpty;
 
 class tula_table2 extends Model
 {
@@ -81,7 +78,8 @@ class tula_table2 extends Model
                 if(filesize("$dirImage") > 0){
                     $imageData = fread($myfile, filesize("$dirImage"));
                     fclose($myfile);
-                    $history['tula'.$i] = $imageData;
+                    
+                    $history['tula'.$i] = $this->resizeImage($imageData);
                 }
             }
             else
@@ -168,5 +166,26 @@ class tula_table2 extends Model
         tula_table2::where('tula_Key',$tula_key)->update($dataUpdate);
         return true;
     }
- 
+    
+    protected function resizeImage($imageDataEncodebase64)
+    {
+        $WIDTH                  = 300; // The size of your new image
+        $HEIGHT                 = 300;  // The size of your new image
+        $imageDataDecode =  base64_decode($imageDataEncodebase64);
+        $image = imagecreatefromstring($imageDataDecode);
+        $org_w = imagesx($image);
+        $org_h = imagesy($image);
+
+        $image_little = imagecreatetruecolor($WIDTH, $HEIGHT);
+        // $org_w and org_h depends of your image, in your case, i guess 800 and 600
+        imagecopyresampled($image_little, $image, 0, 0, 0, 0, $WIDTH, $HEIGHT, $org_w, $org_h);
+        
+        // start buffering
+        ob_start();
+        imagepng($image_little);
+        $contents =  ob_get_contents();
+        ob_end_clean();       
+        $theme_image_enc_little = base64_encode($contents);
+        return  $theme_image_enc_little;
+    }
 }
