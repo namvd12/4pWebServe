@@ -97,7 +97,6 @@ class historyReportController extends Controller
             $response["total"]    = $numberDevice;
             $response["status"]    = 1;          // 1: Successful
             $response["message"]   = "Successful";
-
         }
 		else
 		{
@@ -111,7 +110,7 @@ class historyReportController extends Controller
 
     protected function responseError()
     {
-        $response["status"] = 0;
+        $response["status"] = 2;
         $response["message"] = "Missing mandatory parameters";
         return json_encode($response);
     }

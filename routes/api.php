@@ -18,6 +18,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+/*device */
 Route::put('testPHP/machine.php','App\Http\Controllers\api\deviceController@infor');
 
 Route::post('testPHP/machine.php','App\Http\Controllers\api\deviceController@infor');
@@ -29,3 +30,12 @@ Route::post('testPHP/History.php','App\Http\Controllers\api\historyController@in
 Route::put('testPHP/HistoryReport.php','App\Http\Controllers\api\historyReportController@infor');
 
 Route::post('testPHP/HistoryReport.php','App\Http\Controllers\api\historyReportController@infor');
+
+/*user */
+Route::post('testPHP/user/login.php','App\Http\Controllers\api\user\loginController@login');
+
+Route::post('testPHP/user/edit.php','App\Http\Controllers\api\user\editController@edit');
+
+Route::post('testPHP/user/logout.php','App\Http\Controllers\api\user\logoutController@logout');
+
+Route::post('testPHP/user/resetPassword.php','App\Http\Controllers\api\user\ResetPasswordController@reset');

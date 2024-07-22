@@ -52,6 +52,26 @@ class convertDb{
         'tula5' => 'time', 
         'tula6' => 'status', 
     ];
+
+    public static $mapTable8 = [
+        'tula_Key' => 'userID', 
+        'tula1' => 'userCode', 
+        'tula2' => 'level', 
+        'tula3' => 'userName', 
+        'tula4' => 'passWordHash', 
+        'tula5' => 'fullName', 
+        'tula6' => 'phoneNumber',
+        'tula7' => 'email',
+        'tula8' => 'avatar',
+    ];
+
+    public static $mapTable9 = [
+        'tula_Key' => 'sessionID', 
+        'tula1' => 'userID', 
+        'tula2' => 'seriesID', 
+        'tula3' => 'token', 
+        'tula4' => 'timeExpires', 
+    ];
     public static function  convertDataBase($Datas, $mapTable, $isConvert = true)
     {      
         $device = array();
@@ -63,7 +83,10 @@ class convertDb{
             {
                if($isConvert)
                {
-                   @$newData+=array($mapTable["$key"]=>$value);               
+                    if(isset($mapTable["$key"]))
+                    {
+                        @$newData+=array($mapTable["$key"]=>$value);               
+                    }
                }
                else
                {

@@ -22,14 +22,12 @@ use App\Http\Controllers\PushNotificationController;
 
 Route::get('/','App\Http\Controllers\devicesController@index');
 
-// Route for mailing
-Route::get('/mailer',[MailController::class,'sendMail']);
-// Route::get('mailer',function(){
-//     return new wellcome();
-// });
 
 Route::get('sendNotification', [PushNotificationController::class, 'sendPushNotification'])->name('send.notification');
 
+Route::get('newPassword','App\Http\Controllers\newPasswordController@newPassword')->name('newPassword');
+
+Route::post('resetPassword','App\Http\Controllers\newPasswordController@resetPassword')->name('resetPassword');
 
 // Route::resource('/admin','App\Http\Controllers\adminController')->middleware('role');
 
