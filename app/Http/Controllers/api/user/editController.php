@@ -4,7 +4,7 @@ namespace App\Http\Controllers\api\user;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\tula_table8;
+use App\Models\user;
 class editController extends Controller
 {
     public function edit(Request $request)
@@ -33,7 +33,7 @@ class editController extends Controller
 
     protected function editUser($userName, $passwordNew, $oldPassword, $fullName, $phone, $email, $Avatar)
     {
-        $status = tula_table8::edit($userName, $passwordNew, $oldPassword, $fullName, $phone, $email, $Avatar);
+        $status = user::edit($userName, $passwordNew, $oldPassword, $fullName, $phone, $email, $Avatar);
         if($status)
         {
             $response["status"]   = 1;          // 1: Successful

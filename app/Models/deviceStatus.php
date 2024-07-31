@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\convertDb;
-use App\Models\tula_table1;
+use App\Models\device;
 
 
-class tula_table2 extends Model
+class deviceStatus extends Model
 {
     use HasFactory;
     protected $table = 'tula_table2';
@@ -19,7 +19,7 @@ class tula_table2 extends Model
     public function listHistory($WhereData, $convert = true)
     {
         // search tula_key from $WhereData
-        $datas = tula_table1::where('tula_Key', intval($WhereData))
+        $datas = device::where('tula_Key', intval($WhereData))
                                  ->orwhere('tula1', "$WhereData")->get();
 
         $datas = convertDb::convertDataBase($datas, convertDb::$mapTable1, false);
@@ -28,7 +28,7 @@ class tula_table2 extends Model
 
         // search list data form tula_key
 
-        $datas = tula_table2::where('tula21',$tula_key)
+        $datas = deviceStatus::where('tula21',$tula_key)
                             ->orwhere('tula1',$tula_key)
                             ->where(function($query){
                                 $query->where('tula8','OK')
@@ -48,7 +48,7 @@ class tula_table2 extends Model
             }
             $listHistory[$key]['tula9'] = $isImage;
             // search sub device information
-            $dataInfor = tula_table1::select('tula1','tula3','tula4')->where('tula_Key',$History['tula1'])->get([]);       
+            $dataInfor = device::select('tula1','tula3','tula4')->where('tula_Key',$History['tula1'])->get([]);       
             $subDeviceInfor = convertDb::convertDataBase($dataInfor, convertDb::$mapTable1, false); 
             $listHistory[$key]['tula10'] = $subDeviceInfor[0]['tula1'];
             $listHistory[$key]['tula11'] = $subDeviceInfor[0]['tula3'];
@@ -60,7 +60,7 @@ class tula_table2 extends Model
     public function history($whereData)
     {
         // search data history from history key
-        $datas = tula_table2::where('tula_Key',$whereData)->get();
+        $datas = deviceStatus::where('tula_Key',$whereData)->get();
         $history = convertDb::convertDataBase($datas, convertDb::$mapTable2, false); 
         if(!$history)
         {
@@ -91,7 +91,7 @@ class tula_table2 extends Model
         // handle show list subdevice
         $listSub = '';
         //search subdevice active
-        $datas = tula_table1::where('tula_Key', $history['tula21'])->get();
+        $datas = device::where('tula_Key', $history['tula21'])->get();
         if(count($datas))
         {
             $deviceSubActive = convertDb::convertDataBase($datas, convertDb::$mapTable1, false); 
@@ -101,7 +101,7 @@ class tula_table2 extends Model
         }
 
         // search main subdevice
-        $datas = tula_table1::where('tula_Key', $history['tula1'])->get();
+        $datas = device::where('tula_Key', $history['tula1'])->get();
         $deviceMain = convertDb::convertDataBase($datas, convertDb::$mapTable1, false); 
         $deviceMainCode = $deviceMain[0]['tula1'];
         if(!str_contains($listSub,$deviceMainCode))
@@ -114,7 +114,7 @@ class tula_table2 extends Model
         }
         
         // search list subdevice
-        $datas = tula_table1::select('tula1')->where('tula1', 'like','%'.$deviceMain[0]['tula1'].'.%')->get();
+        $datas = device::select('tula1')->where('tula1', 'like','%'.$deviceMain[0]['tula1'].'.%')->get();
         $listdeviceSub = convertDb::convertDataBase($datas, convertDb::$mapTable1, false); 
         foreach($listdeviceSub as $deviceSub)
         {
@@ -155,7 +155,7 @@ class tula_table2 extends Model
         }
 
         /*device */
-        $datas = tula_table1::select('tula_Key')->where('tula1',$Subdevice)->get();
+        $datas = device::select('tula_Key')->where('tula1',$Subdevice)->get();
         $deviceSub = convertDb::convertDataBase($datas, convertDb::$mapTable1, false); 
         if(!count($deviceSub))
         {
@@ -163,7 +163,7 @@ class tula_table2 extends Model
         }
         $dataUpdate['tula21'] = $deviceSub[0]['tula_Key'];
         /*update data */
-        tula_table2::where('tula_Key',$tula_key)->update($dataUpdate);
+        deviceStatus::where('tula_Key',$tula_key)->update($dataUpdate);
         return true;
     }
     

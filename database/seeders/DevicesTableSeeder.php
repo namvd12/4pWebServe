@@ -13,12 +13,6 @@ class DevicesTableSeeder extends Seeder
      */
     public function run()
     {
-        for($i = 0; $i < 200; $i++)
-        {
-            $device = new Devices();
-            $device->SN = "SN".$i;
-            $device->NameDevice = "Name device".$i; 
-            $device->save();
-        }
+        
     }
 }

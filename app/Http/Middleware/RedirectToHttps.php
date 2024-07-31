@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class RoleMiddleware
+class RedirectToHttps
 {
     /**
      * Handle an incoming request.
@@ -16,7 +16,10 @@ class RoleMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        //return redirect()->route('home');
+        if (!$request->secure()) {
+            return redirect()->secure($request->getRequestUri());
+        }
+        
         return $next($request);
     }
 }

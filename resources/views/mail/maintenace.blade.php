@@ -4,14 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <title>Maintenace plan</title>
+    <style>
+    #customers {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    #customers td, #customers th {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: center;
+    }
+
+    #customers tr:hover {background-color: #ddd;}
+
+    #customers th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        background-color: #04AA6D;
+        color: white;
+    }
+
+    #customers td {
+        color: black;
+    }
+
+    .header{
+        text-align: center;
+    }
+
+    .footer p{
+        text-align: center;
+    }
+
+    </style>
 </head>
 <body>
-    <div class="container mt-3">
-        <h2 style="align-content: center">List Maintenace {{ date("h:i:sa") }}</h2>
-        <table style="border:1px solid #333">
+    <div class="header">
+        <h2>Warning List of maintenance plans</h2>
+        <h3>{{ date("d-m-Y")}}</h3>
+    </div>
+        <p>Hello {{ $name }},<br> {{config('app.name')}} sends you a list of devices that are due for maintenance.</p>
+        <table id = "customers">
             <thead>
                 <tr>
                     <th>Line</th>
@@ -28,8 +64,7 @@
                  @foreach ($listMachineWarning as $machineWarning) 
                     <tr>
                         <td>{{ $machineWarning['line'] }}</td>
-                        <td>{{ $machineWarning['deviceName'] }}</td>
-        
+                        <td>{{ $machineWarning['deviceName'] }}</td>        
                         <td>{{ $machineWarning['item'] }}</td>
                         <td>{{ $machineWarning['status'] }}</td>
                         <td>{{ $machineWarning['cycles'] }}</td>
@@ -39,9 +74,11 @@
                     </tr>
                 @endforeach
             </tbody>
-        </table>   
+        </table>
+        <p>Thanks,<br>
+            {{ config('app.name') }}</p>   
+    <div class="footer">
+        <p>© {{ date('Y') }} {{config('app.name')}}. All rights reserved.</p>
     </div>
 </body>
 </html>
-
-| {{ $machineWarning['line'] }} | {{ $machineWarning['deviceName'] }} | {{ $machineWarning['item'] }} | {{ $machineWarning['status'] }} | {{ $machineWarning['timeRemaining'] }} |

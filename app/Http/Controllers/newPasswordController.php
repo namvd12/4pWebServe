@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\tula_table9;
+use App\Models\Authen;
 use Illuminate\Http\Request;
-use App\Models\tula_table8;
+use App\Models\user;
 class newPasswordController extends Controller
 {
     //
@@ -15,7 +15,7 @@ class newPasswordController extends Controller
             $seriesID = $request->get('seriesID');
             $token = $request->get('token');
             // verify seriesID and token
-            $status = tula_table9::verifyAuth($seriesID,  $token);
+            $status = Authen::verifyAuth($seriesID,  $token);
             if($status)
             {
                 return view('userPassword.newPassword',['seriesID'=>$seriesID]);
@@ -37,7 +37,7 @@ class newPasswordController extends Controller
         {
             $seriesID = $request->get('seriesID');
             $password = $request->get('confirmPassword');
-            $status = tula_table8::updateNewPassword($seriesID, $password);
+            $status = user::updateNewPassword($seriesID, $password);
             if($status)
             {
                 $textStatus = "DONE";

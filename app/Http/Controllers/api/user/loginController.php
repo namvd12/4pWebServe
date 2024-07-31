@@ -4,7 +4,7 @@ namespace App\Http\Controllers\api\user;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\tula_table8;
+use App\Models\user;
 class loginController extends Controller
 {
     public function login(Request $request)
@@ -24,7 +24,7 @@ class loginController extends Controller
 
     protected function loginUser($user, $pass)
     {
-        $userInfor = tula_table8::login($user, $pass);
+        $userInfor = user::login($user, $pass);
         if($userInfor != null)
         {
             $response["status"] = 1;

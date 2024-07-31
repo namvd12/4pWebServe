@@ -5,7 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use App\Models\tula_table1;
+use App\Models\device;
 class deviceController extends Controller
 {
     public function infor(Request $request)
@@ -48,7 +48,7 @@ class deviceController extends Controller
     
     protected function showAllError()
     {
-        $dataTable = new tula_table1();
+        $dataTable = new device();
         $listDeviceNG = $dataTable->deviceNG(false);
         $response = array();
         $numberDevice = 0;
@@ -82,7 +82,7 @@ class deviceController extends Controller
 
     protected function showAllDevice()
     {
-        $dataTable = new tula_table1();
+        $dataTable = new device();
         $listDeviceNG = $dataTable->deviceAll(false);
         $response = array();
         $numberDevice = 0;
@@ -115,7 +115,7 @@ class deviceController extends Controller
 
     protected function showOneDevice($tula_key_or_code)
     {
-        $dataTable = new tula_table1();
+        $dataTable = new device();
         $device = $dataTable->findOneDevice($tula_key_or_code,false);
 
         // read data 
@@ -155,7 +155,7 @@ class deviceController extends Controller
         fwrite($myfile, $dataImage);
         fclose($myfile);
 
-        $dataTable = new tula_table1();
+        $dataTable = new device();
         $dataTable->updateImage($tulaKey, $image_dir);
         
         $response["status"]   = 1;          // 1: Successful

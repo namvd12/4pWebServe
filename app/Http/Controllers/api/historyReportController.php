@@ -4,7 +4,7 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\tula_table6;
+use App\Models\deviceReport;
 class historyReportController extends Controller
 {
     public function infor(Request $request)
@@ -34,7 +34,7 @@ class historyReportController extends Controller
     
     protected function showAllHistoryOneDevice($tula_key)
     {
-        $dataTable = new tula_table6();
+        $dataTable = new deviceReport();
         $listHistory = $dataTable->listHistory($tula_key);
         $response = array();
         $numberDevice = 0;
@@ -71,7 +71,7 @@ class historyReportController extends Controller
 
     protected function showHistoryReportAllDevice($timeForm, $timeTo)
     {
-        $dataTable = new tula_table6();
+        $dataTable = new deviceReport();
         $listHistory = $dataTable->listHistoryAllDevice($timeForm,  $timeTo);
         $response = array();
         $numberDevice = 0;

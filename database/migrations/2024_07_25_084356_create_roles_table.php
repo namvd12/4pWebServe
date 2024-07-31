@@ -3,8 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\DB;
-class TulaTable6 extends Migration
+
+class CreateRolesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class TulaTable6 extends Migration
      */
     public function up()
     {
-        //
-        DB::unprepared(file_get_contents('D:\namvd\laravel\database\oldDb\tula_table_6.sql'));
+        Schema::create('roles', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -24,6 +27,6 @@ class TulaTable6 extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('TulaTable6');
+        Schema::dropIfExists('roles');
     }
 }

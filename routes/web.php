@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\devicesController;
 use App\Http\Controllers\MailController;
 use App\Mail\wellcome;
-use App\Http\Controllers\PushNotificationController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,10 +20,7 @@ use App\Http\Controllers\PushNotificationController;
 
 // Route::get('device',[devicesController::class,'view'])->name('device');
 
-Route::get('/','App\Http\Controllers\devicesController@index');
-
-
-Route::get('sendNotification', [PushNotificationController::class, 'sendPushNotification'])->name('send.notification');
+Route::get('/','App\Http\Controllers\Controller@view');
 
 Route::get('newPassword','App\Http\Controllers\newPasswordController@newPassword')->name('newPassword');
 

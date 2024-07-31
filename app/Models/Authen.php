@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class tula_table9 extends Model
+class Authen extends Model
 {
     use HasFactory;
 
@@ -20,22 +20,22 @@ class tula_table9 extends Model
 
         $hashPass = password_hash($token, PASSWORD_DEFAULT);
 
-        if(tula_table9::where('tula1',$userID)->count() == 0)
+        if(Authen::where('tula1',$userID)->count() == 0)
         {
             // create new
             $newRow = array("tula1"=>$userID,"tula2"=>$seriesID, "tula3"=>$hashPass,"tula4"=>$timeExpires );
-            tula_table9::create($newRow);
+            Authen::create($newRow);
         }
         else
         {   // update
-            tula_table9::where('tula1',$userID)->update(["tula2"=>$seriesID, "tula3"=>$hashPass,"tula4"=>$timeExpires]);
+            Authen::where('tula1',$userID)->update(["tula2"=>$seriesID, "tula3"=>$hashPass,"tula4"=>$timeExpires]);
         }
     }
 
     public static function verifyAuth($seriesID, $token)
     {
         /*search token where seriesID */
-        $datas = tula_table9::select('tula3', 'tula4')->where('tula2',$seriesID)->get();
+        $datas = Authen::select('tula3', 'tula4')->where('tula2',$seriesID)->get();
         $sessionInfor = convertDb::convertDataBase($datas, convertDb::$mapTable9, true); 
         if(count(($sessionInfor)) !=1)
         {

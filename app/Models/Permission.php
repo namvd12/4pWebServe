@@ -5,8 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class devices extends Model
+class Permission extends Model
 {
     use HasFactory;
-    protected $fillable = ['SN','NameDevice'];
+    protected $table = 'tula_table11';
 }

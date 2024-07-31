@@ -131,6 +131,7 @@ return [
         Str::slug(env('APP_NAME', 'laravel'), '_').'_session'
     ),
 
+    'secure' => env('COOKIE_SECURE', true),
     /*
     |--------------------------------------------------------------------------
     | Session Cookie Path
@@ -168,7 +169,7 @@ return [
     |
     */
 
-    'secure' => env('SESSION_SECURE_COOKIE'),
+    'secure' => env('SESSION_SECURE_COOKIE', true),
 
     /*
     |--------------------------------------------------------------------------

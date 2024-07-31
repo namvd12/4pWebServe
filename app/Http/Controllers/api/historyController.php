@@ -4,7 +4,7 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\tula_table2;
+use App\Models\deviceStatus;
 
 class historyController extends Controller
 {
@@ -39,7 +39,7 @@ class historyController extends Controller
     
     protected function showAllHistory($tula_key)
     {
-        $dataTable = new tula_table2();
+        $dataTable = new deviceStatus();
         $listHistory = $dataTable->listHistory($tula_key);
         $response = array();
         $numberDevice = 0;
@@ -76,7 +76,7 @@ class historyController extends Controller
 
     protected function showHistory($tula_key)
     {
-        $dataTable = new tula_table2();
+        $dataTable = new deviceStatus();
         $History = $dataTable->history($tula_key);
         $response = array();
        
@@ -96,7 +96,7 @@ class historyController extends Controller
     
     protected function updateDataHistory($tula_key, $request)
     {
-        $dataTable = new tula_table2();
+        $dataTable = new deviceStatus();
         $text['text6'] = array_key_exists('text0',$request)? $request['text0'] : "";
         $text['text10'] = array_key_exists('text1',$request)? $request['text1'] : "";
         $text['text12'] = array_key_exists('text2',$request)? $request['text2'] : "";
