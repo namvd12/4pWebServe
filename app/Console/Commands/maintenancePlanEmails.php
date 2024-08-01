@@ -56,16 +56,25 @@ class maintenancePlanEmails extends Command
         array_multisort($lines, SORT_ASC, $listMachine);
 
         // get list email to send notification
-        $listEmail = user::findListEmail(["Team leader","Part leader"]);
-
-        foreach($listEmail as $email)
-        {     
-            $emailName = $email['email'];
-            if($emailName != "")
-            {
-                Mail::to($emailName)->send(new maintenancePlan($listMachine, $email['fullName']));
-            }     
-        }            
-        $this->info('Emails sent sussessfully');
+        if(env("APP_ENV","develop") == "product")
+        {
+            $listEmail = user::findListEmail(["Team_leader","Part_leader"]);
+        }
+        else
+        {
+            $listEmail = user::findListEmail(["Test"]);
+        }
+        if($listEmail != null)
+        {
+            foreach($listEmail as $email)
+            {     
+                $emailName = $email['email'];
+                if($emailName != "")
+                {
+                    Mail::to($emailName)->send(new maintenancePlan($listMachine, $email['fullName']));
+                }     
+            }            
+            $this->info('Emails sent sussessfully');
+        }
     }
 }

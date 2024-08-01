@@ -11,37 +11,73 @@ class pushNotiController extends Controller
 {
     public function push(Request $request)
     {
-        $request = json_decode($request->getContent(), TRUE);
+        $requestDatas = json_decode($request->getContent());  // decode request
 
         $firebase = (new Factory)
             ->withServiceAccount(__DIR__.'\..\..\..\..\firebase_credentials.json');
+            
+        $messageBody = "";
+        $datas =  json_decode($requestDatas, TRUE);   // decode content
 
-        
+        $countDeviceNG = count($datas);
+        $title = "$countDeviceNG Device NG";
+        foreach( $datas as $data)
+        {
+            if(isset($data["deviceCode"]) && isset($data["deviceName"]) && isset($data["line"]) && isset($data["lane"])) 
+            {
+                $deviceCode = $data["deviceCode"];
+                $deviceName = $data["deviceName"];
+                $line       = $data["line"];
+                $lane       = $data["lane"]; 
+                $messageBody .= "$line-$lane [$deviceCode]  $deviceName \r\n";               
+            }
+        }
+       
         $messaging = $firebase->createMessaging();
-
-        
+       
         $message = array();
         
-        $notification = [ 'title' => 'Device NG',
-                          'body' => $request];
-        
-        $message []= CloudMessage::fromArray([
-            'notification' => $notification,    
-            'topic'=> 'Team_leader',  
-        ]);
-        $message []= CloudMessage::fromArray([
-            'notification' => $notification,    
-            'topic'=> 'Part_leader',  
-        ]);
-        $message []= CloudMessage::fromArray([
-            'notification' => $notification,    
-            'topic'=> 'Engineer',  
-        ]);
-        // $message []= CloudMessage::fromArray([
-        //     'notification' => $notification,    
-        //     'topic'=> 'Customer',  
-        // ]);
+        $notification = [ 'title' => $title,
+                          'body' => $messageBody];
+        if(env("APP_ENV","develop") == "product")
+        {
+            $message []= CloudMessage::fromArray([
+                'notification' => $notification,    
+                'topic'=> 'Team_leader', 
+                "android"=> [
+                    "priority"=> "high"
+                ],
+                "priority" => 10, 
+            ]);
+            $message []= CloudMessage::fromArray([
+                'notification' => $notification,    
+                'topic'=> 'Part_leader',  
+                "android"=> [
+                    "priority"=> "high"
+                ],
+                "priority" => 10,
+            ]);
+            $message []= CloudMessage::fromArray([
+                'notification' => $notification,    
+                'topic'=> 'Engineer',  
+                "android"=> [
+                    "priority"=> "high"
+                ],
+                "priority" => 10,
+            ]);
+        }
+        else
+        {
+            $message []= CloudMessage::fromArray([
+                'notification' => $notification,    
+                'topic'=> 'Test', 
+                "android"=> [
+                    "priority"=> "high",
+                ],
+                "priority" => 10,
+            ]);
 
+        }
         $messaging->sendall($message);
 
         return response()->json(['message' => "Push notification OK"]);

@@ -14,31 +14,33 @@ use Illuminate\Support\Facades\Mail;
 class Controller extends BaseController
 {
    public function view(){
-    // get list machine warning
-    $listMachine = machinePlan::getMachineWarning();
-    if(count($listMachine) == 0)
-    {
-        return;
-    }
-    // sort line
-    $lines = array();
-    foreach ($listMachine as $key => $machine)
-    {
-        $lines[$key] = $machine['line'];
-    }
-    array_multisort($lines, SORT_ASC, $listMachine);
-
-    // get list email to send notification
-    $listEmail = user::findListEmail(["Team leader","Part leader"]);
-
-    foreach($listEmail as $email)
-    {     
-        $emailName = $email['email'];
-        if($emailName != "")
+        // get list machine warning
+        $listMachine = machinePlan::getMachineWarning();
+        if(count($listMachine) == 0)
         {
-            Mail::to($emailName)->send(new maintenancePlan($listMachine, $email['fullName']));
-        }     
-    }       
-      return view('mail.maintenace',['listMachineWarning'=>$listMachine, 'name'=>"123"]);
+            return;
+        }
+        // sort line
+        $lines = array();
+        foreach ($listMachine as $key => $machine)
+        {
+            $lines[$key] = $machine['line'];
+        }
+        array_multisort($lines, SORT_ASC, $listMachine);
+
+        // get list email to send notification
+        $listEmail = user::findListEmail(["Team_leader","Part_leader"]);
+        if($listEmail != null)
+        {        
+            foreach($listEmail as $email)
+            {     
+                $emailName = $email['email'];
+                if($emailName != "")
+                {
+                    Mail::to($emailName)->send(new maintenancePlan($listMachine, $email['fullName']));
+                }     
+            }       
+            return view('mail.maintenace',['listMachineWarning'=>$listMachine, 'name'=>"123"]);
+        }
    }
 }
