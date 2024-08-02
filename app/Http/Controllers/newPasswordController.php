@@ -46,7 +46,6 @@ class newPasswordController extends Controller
             {
                 $textStatus = "ERROR";
             }
-
             return view('userPassword.resetStatus',['textStatus'=>$textStatus]);
         }
     }

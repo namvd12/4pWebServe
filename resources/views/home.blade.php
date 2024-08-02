@@ -1,47 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <title>Maintenace plan</title>
-</head>
-<body>
-    <div class="container mt-3">
-        <h2 style="align-content: center">List Maintenace {{ date("h:i:sa") }}</h2>
-        <table style="border:1px solid #333">
-            <thead>
-                <tr>
-                    <th>Line</th>
-                    <th>Machine</th>
-                    <th>Item</th>
-                    <th>Status</th>
-                    <th>Cycles</th>
-                    <th>Time Lates</th>
-                    <th>Time Maintenace</th>
-                    <th>Time Remaining</th>
-                </tr>
-            </thead>
-            <tbody>
-                 @foreach ($listMachineWarning as $machineWarning) 
-                    <tr>
-                        <td>{{ $machineWarning['line'] }}</td>
-                        <td>{{ $machineWarning['deviceName'] }}</td>
-        
-                        <td>{{ $machineWarning['item'] }}</td>
-                        <td>{{ $machineWarning['status'] }}</td>
-                        <td>{{ $machineWarning['cycles'] }}</td>
-                        <td>{{ $machineWarning['timeLates'] }}</td>
-                        <td>{{ $machineWarning['timeMaintenace'] }}</td>
-                        <td>{{ $machineWarning['timeRemaining'] }}</td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>   
-    </div>
-</body>
-</html>
-
-| {{ $machineWarning['line'] }} | {{ $machineWarning['deviceName'] }} | {{ $machineWarning['item'] }} | {{ $machineWarning['status'] }} | {{ $machineWarning['timeRemaining'] }} |
+@extends('layouts.master')
+@section('content')
+<div class="container">
+    <h2> Home page</h2>
+</div>
+@endsection
