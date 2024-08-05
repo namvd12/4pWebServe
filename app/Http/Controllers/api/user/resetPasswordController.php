@@ -27,6 +27,7 @@ class resetPasswordController extends Controller
     protected function resetPw($user)
     {    
         $userInfor = user::findUserInfor($user);
+
         if($userInfor == null)
         {
             $response["status"]   = 0;

@@ -20,7 +20,7 @@ use App\Mail\wellcome;
 
 // Route::get('device',[devicesController::class,'view'])->name('device');
 
-Route::get('login','App\Http\Controllers\web\login\loginController@index');
+Route::get('','App\Http\Controllers\web\login\loginController@index');
 
 Route::post('loging','App\Http\Controllers\web\login\loginController@loging')->name('loging');
 

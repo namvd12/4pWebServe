@@ -141,11 +141,12 @@ class user extends Model
         /*check user and userID is exits */
         $datas = Authen::select('tula1')->where('tula2',$seriesID)->get();
         $userID = convertDb::convertDataBase($datas, convertDb::$mapTable9, true); 
+
         if (count($datas) != 1) {
             return false;
         }
         /*check user and userID is exits */
-        $datas = user::where('tula_key',$userID[0]['userID'])->get();
+        $datas = user::where('tula1',$userID[0]['userID'])->get();
         $userInfor = convertDb::convertDataBase($datas, convertDb::$mapTable8, true); 
         if (count($userInfor) !=1) {
             return false;

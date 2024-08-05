@@ -48,6 +48,13 @@ class pushNotiController extends Controller
                     "priority"=> "high"
                 ],
                 "priority" => 10, 
+                'apns'=> [
+                    'payload'=> [
+                        'aps'=> [
+                            'sound'=> 'default'
+                        ],
+                    ],
+                ],
             ]);
             $message []= CloudMessage::fromArray([
                 'notification' => $notification,    
@@ -56,6 +63,13 @@ class pushNotiController extends Controller
                     "priority"=> "high"
                 ],
                 "priority" => 10,
+                'apns'=> [
+                    'payload'=> [
+                        'aps'=> [
+                            'sound'=> 'default'
+                        ],
+                    ],
+                ],
             ]);
             $message []= CloudMessage::fromArray([
                 'notification' => $notification,    
@@ -64,6 +78,13 @@ class pushNotiController extends Controller
                     "priority"=> "high"
                 ],
                 "priority" => 10,
+                'apns'=> [
+                    'payload'=> [
+                        'aps'=> [
+                            'sound'=> 'default'
+                        ],
+                    ],
+                ],
             ]);
         }
         else
@@ -75,6 +96,13 @@ class pushNotiController extends Controller
                     "priority"=> "high",
                 ],
                 "priority" => 10,
+                'apns'=> [
+                    'payload'=> [
+                        'aps'=> [
+                            'sound'=> 'default'
+                        ],
+                    ],
+                ],
             ]);
 
         }
