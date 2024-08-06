@@ -21,7 +21,7 @@ class historyController extends Controller
             }
             else if(isset($request['text0']) || isset($request['text1']) || isset($request['text2']) || isset($request['text3']) || isset($request['text4']) || isset($request['text5'])|| isset($request['text6'])
                  || isset($request['image1']) || isset($request['image2']) || isset($request['image3']) || isset($request['image4']) || isset($request['image5'])|| isset($request['image6']) 
-                 || isset($request['device']) || isset($request['status']))
+                 || isset($request['device']) || isset($request['userID']))
             {
                 return $this->updateDataHistory($tula_key, $request);
             }
@@ -114,6 +114,8 @@ class historyController extends Controller
 
         $device = array_key_exists('device',$request)? $request['device'] : "";
         $status = array_key_exists('status',$request)? $request['status'] : "";
+                
+        $userID = array_key_exists('userID',$request)? $request['userID'] : "";
 
         // store image
         for($i = 9; $i<=19; $i = $i+2)
@@ -131,7 +133,7 @@ class historyController extends Controller
         }
         
         // update text and dirImage to db
-        $status = $dataTable->writeDataHistory($tula_key, $text, $image, $device, $status);
+        $status = $dataTable->writeDataHistory($tula_key, $text, $image, $device, $userID);
         if($status)
         {
             $response["status"]    = 1;          // 1: Successful

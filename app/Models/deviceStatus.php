@@ -128,7 +128,7 @@ class deviceStatus extends Model
         return $history;
     }
 
-    public function writeDataHistory($tula_key, $text, $image, $Subdevice, $status)
+    public function writeDataHistory($tula_key, $text, $image, $Subdevice, $userID)
     {
         $dataUpdate = array();
 
@@ -145,7 +145,7 @@ class deviceStatus extends Model
             }
         }
 
-        /*image */
+        /* image */
         for($i = 9; $i <=19 ; $i = $i+2)
         {            
             if($image['image'.$i] != '')
@@ -154,7 +154,7 @@ class deviceStatus extends Model
             }
         }
 
-        /*device */
+        /* device */
         $datas = device::select('tula_Key')->where('tula1',$Subdevice)->get();
         $deviceSub = convertDb::convertDataBase($datas, convertDb::$mapTable1, false); 
         if(!count($deviceSub))
@@ -162,8 +162,12 @@ class deviceStatus extends Model
             return false;
         }
         $dataUpdate['tula21'] = $deviceSub[0]['tula_Key'];
-        /*update data */
+
+        /* UserID*/
+        $dataUpdate['tula22'] = $userID;
+        /* update data */
         deviceStatus::where('tula_Key',$tula_key)->update($dataUpdate);
+
         return true;
     }
     

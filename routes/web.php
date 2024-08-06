@@ -22,6 +22,8 @@ use App\Mail\wellcome;
 
 Route::get('','App\Http\Controllers\web\login\loginController@index');
 
+Route::post('maintenacePlan','App\Http\Controllers\web\sparePart\maintenacePlanController@index')->name('maintenacePlan');
+
 Route::post('loging','App\Http\Controllers\web\login\loginController@loging')->name('loging');
 
 Route::get('newPassword','App\Http\Controllers\newPasswordController@newPassword')->name('newPassword');

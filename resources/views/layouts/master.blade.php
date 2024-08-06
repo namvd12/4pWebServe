@@ -6,24 +6,36 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    @yield('ccs')
+    @yield('js')
     <title>Document</title>
 </head>
-<body>
-    <nav class="navbar navbar-expand-lg bg-light">
+<body style="height:1500px">
+    <nav class="navbar navbar-expand-sm bg-light fixed-top">
         <div class="container-fluid">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" href="">Home</a>
+                    <a class="nav-link" href="{{ route('maintenacePlan') }}">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="">Device Maintenace Plan</a>
-                </li>
+                {{-- <li class="nav-item">
+                    <a class="nav-link" href="">Maintenace Plan</a>
+                </li> --}}
             </ul>
         </div>
     </nav>
-    @yield('content')
-    <div style="background-color: red; height:100px">
-        <p>This is footer</p>
+    <div class="container-fluid" style="margin-top:80px">
+      <div style="height: 1500px">
+        @yield('content')
+      </div>
     </div>
+    {{-- footer --}}
+    <footer class="text-center text-lg-start text-white" style="background-color: #1c2331" >
+      <div
+          class="text-center p-3"
+          style="background-color: rgba(0, 0, 0, 0.2)"
+          >
+          Bản quyền © {{ date('Y') }}, Công ty TNHH Giải pháp TULA sở hữu
+      </div>
+    </footer>
 </body>
 </html>
