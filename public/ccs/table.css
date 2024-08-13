@@ -1,0 +1,10 @@
+th,
+td {
+    white-space: nowrap;
+}
+.note {
+    max-width: 130px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

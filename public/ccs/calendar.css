@@ -17,25 +17,25 @@ body {
 caption {
     text-align: center;
     grid-column: 1 / -1;
-    font-size: 130%;
+    font-size: 140%;
     font-weight: bold;
     padding: 10px 0;
 }
 
 #calendar a {
-    color: #8e352e;
+    color: #41a812;
     text-decoration: none;
 }
 
 #calendar td,
 #calendar th {
-    padding: 5px;
+    padding: 3px;
     box-sizing: border-box;
-    border: 1px solid #ccc;
+    border: 1px solid #e6d5d5;
 }
 
 #calendar .weekdays {
-    background: #dd7474;
+    background: #bdb6b6;
 }
 
 #calendar .weekdays th {
@@ -49,13 +49,13 @@ caption {
 }
 
 #calendar td {
-    min-height: 180px;
+    min-height: 100px;
     display: flex;
     flex-direction: column;
 }
 
-#calendar .days li:hover {
-    background: #d3d3d3;
+#calendar .other-day:hover {
+    background: #c0b7b7;
 }
 
 #calendar .date {
@@ -71,26 +71,47 @@ caption {
     flex: 0 0 auto;
     align-self: flex-end;
 }
-
 #calendar .event {
-    flex: 0 0 auto;
-    font-size: 13px;
+    flex: 1 0 auto;
+    font-size: 16px;
     border-radius: 4px;
     padding: 5px;
-    margin-bottom: 5px;
-    line-height: 14px;
-    background: #e4f2f2;
-    border: 1px solid #b5dbdc;
-    color: #009aaf;
+    line-height: 25px;
+    background: #ffffff;
+    border: 1px solid #000000;
+    color: #127f8d;
     text-decoration: none;
 }
 
-#calendar .event-desc {
-    color: #666;
-    margin: 3px 0 7px 0;
+#calendar .event-danger {
+    color: #ff0707;
+
     text-decoration: none;
 }
-#calendar .other-month {
-    background: #f5f5f5;
-    color: #666;
+#calendar .event-warning {
+    color: #d1d418;
+
+    text-decoration: none;
+}
+
+#calendar .event-normal {
+    color: #000000;
+
+    text-decoration: none;
+}
+
+#calendar .event-success {
+    color: #1ada13;
+    text-decoration: none;
+}
+
+#calendar .event-underline-hover:hover {
+    text-decoration: underline;
+}
+
+#calendar .other-day {
+    background: #ffffff;
+}
+#calendar .today {
+    background: #02afff;
 }

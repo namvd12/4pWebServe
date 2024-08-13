@@ -21,7 +21,7 @@ class loginController extends Controller
             $userInfor = user::login($user, $pass);
             if($userInfor != null)
             {
-                return view('sparePart.maintenacePlan');
+                return redirect()->route('maintenacePlan');
             }
             else
             {

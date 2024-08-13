@@ -12,15 +12,15 @@ class device extends Model
 
     public $timestamps = false;
     
-    public function deviceNG($convert = true)
+    public static function deviceNG($convert = true)
     {
         $datas = device::where('tula5',"NG")->get();
 
         $devices = convertDb::convertDataBase($datas,convertDb::$mapTable1, $convert);
         return $devices;
     }
-    
-    public function deviceAll($convert = true)
+  
+    public static function deviceAll($convert = true)
     {
         $datas = device::all();
 
@@ -28,14 +28,14 @@ class device extends Model
         return $devices;
     }
 
-    public function findOneDevice($whereData, $convert = true)
+    public static function findOneDevice($whereData, $convert = true)
     {       
         $datas = device::where('tula1','=',"$whereData")->orwhere('tula_key','=',intval($whereData))->get();
         $devices = convertDb::convertDataBase($datas,convertDb::$mapTable1, $convert);
         return $devices;
     }
 
-    public function updateImage($whereData, $dataUpdate)
+    public static function updateImage($whereData, $dataUpdate)
     {
         $status = device::where('tula1','=',"$whereData")->orwhere('tula_key','=',intval($whereData))->update(['tula7'=>"$dataUpdate"]);
         return $status;

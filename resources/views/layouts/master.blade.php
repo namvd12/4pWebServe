@@ -8,25 +8,52 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     @yield('ccs')
     @yield('js')
-    <title>Document</title>
+    <title>Saban-Wi</title>
 </head>
-<body style="height:1500px">
-    <nav class="navbar navbar-expand-sm bg-light fixed-top">
+<body style="padding-top: 65px">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
         <div class="container-fluid">
-            <ul class="navbar-nav">
+          <a class="navbar-brand" href="#">Saban-Wi</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('maintenacePlan') }}">Home</a>
+                <a class="nav-link active" aria-current="page" href="{{ route('maintenacePlan') }}">Home</a>
                 </li>
                 {{-- <li class="nav-item">
-                    <a class="nav-link" href="">Maintenace Plan</a>
+                <a class="nav-link" href="#">Device</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Report </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">All line</a></li>
+                        <li><a class="dropdown-item" href="#">Each line</a></li>
+                        <li><a class="dropdown-item" href="#">MTTR</a></li>
+                        <li><a class="dropdown-item" href="#">MTTF</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Spare part </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="">Machine plan</a></li>
+                        <li><a class="dropdown-item" href="#">Spare part</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="">About</a>
                 </li> --}}
             </ul>
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
         </div>
-    </nav>
-    <div class="container-fluid" style="margin-top:80px">
-      <div style="height: 1500px">
+      </nav>
+    <div class="container " style="height: 1000px">
         @yield('content')
-      </div>
     </div>
     {{-- footer --}}
     <footer class="text-center text-lg-start text-white" style="background-color: #1c2331" >

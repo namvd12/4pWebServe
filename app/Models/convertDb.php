@@ -57,7 +57,8 @@ class convertDb{
         'tula4' => 'timeMaintenace', 
         'tula5' => 'timeRemaining', 
         'tula6' => 'item',
-        'tula7' => 'status'
+        'tula7' => 'status',
+        'tula8' => 'note'
     ];
 
     // tula_table5,   // Sparepart plan

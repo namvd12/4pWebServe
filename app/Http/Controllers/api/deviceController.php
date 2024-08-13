@@ -48,8 +48,7 @@ class deviceController extends Controller
     
     protected function showAllError()
     {
-        $dataTable = new device();
-        $listDeviceNG = $dataTable->deviceNG(false);
+        $listDeviceNG = device::deviceNG(false);
         $response = array();
         $numberDevice = 0;
        
@@ -82,8 +81,7 @@ class deviceController extends Controller
 
     protected function showAllDevice()
     {
-        $dataTable = new device();
-        $listDeviceNG = $dataTable->deviceAll(false);
+        $listDeviceNG = device::deviceAll(false);
         $response = array();
         $numberDevice = 0;
        
@@ -115,8 +113,7 @@ class deviceController extends Controller
 
     protected function showOneDevice($tula_key_or_code)
     {
-        $dataTable = new device();
-        $device = $dataTable->findOneDevice($tula_key_or_code,false);
+        $device = device::findOneDevice($tula_key_or_code,false);
 
         // read data 
         $content = "";
@@ -155,8 +152,7 @@ class deviceController extends Controller
         fwrite($myfile, $dataImage);
         fclose($myfile);
 
-        $dataTable = new device();
-        $dataTable->updateImage($tulaKey, $image_dir);
+        device::updateImage($tulaKey, $image_dir);
         
         $response["status"]   = 1;          // 1: Successful
 		$response["message"]  = "Successful";

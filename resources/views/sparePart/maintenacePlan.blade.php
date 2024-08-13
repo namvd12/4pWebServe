@@ -2,155 +2,125 @@
 @section("ccs")
     <link href="{{ asset('ccs/calendar.css')}}" rel="stylesheet" />
 @endsection
+@section("js")
+    
+@endsection
 @section("content")
-    <table id="calendar">
-        <caption>{{ date('m-y')}}</caption>
-        <tr class="weekdays">
-            <th scope="col"> Monday</th>
-            <th scope="col"> Tuesday</th>
-            <th scope="col"> Wednesday</th>
-            <th scope="col"> Thursday</th>
-            <th scope="col"> Friday</th>
-            <th scope="col"> Saturday</th>
-            <th scope="col"> Sunday</th>
-        </tr>
-        <tr class="days">
-            <td class="day other-month">
-                <div class="date">29</div>
-            </td>
-            <td class="day other-month">
-                <div class="date">30</div>
-            </td>
-            <td class="day other-month">
-                <div class="date">31</div>
-            </td>
-            <td class="day other-month">
-                <div class="date">1</div>
-            </td>
-            <td class="day other-month">
-                <div class="date">2</div>
-            </td>
-            <td class="day other-month">
-                <div class="date">3</div>
-            </td>
-            <td class="day other-month">
-                <div class="date">4</div>
-            </td>
-        </tr>
-        <tr class="days">
-            <td class="day other-month">
-                <div class="date">29</div>
-            </td>
-            <td class="day other-month">
-                <div class="date">30</div>
-            </td>
-            <td class="day other-month">
-                <div class="date">31</div>
-            </td>
-            <td class="day other-month">
-                <div class="date">1</div>
-            </td>
-            <td class="day other-month">
-                <div class="date">2</div>
-            </td>
-            <td class="day other-month">
-                <div class="date">3</div>
-            </td>
-            <td class="day other-month">
-                <div class="date">4</div>
-            </td>
-        </tr>
-        <tr class="days">
-            <td class="day other-month">
-                <div class="date">5</div>
-            </td>
-            <td class="day other-month">
-                <div class="date">6</div>
-            </td>
-            <td class="day other-month">
-                <div class="date">7</div>
-            </td>
-            <td class="day other-month">
-                <div class="date">8</div>
-            </td>
-            <td class="day other-month">
-                <div class="date">9</div>
-            </td>
-            <td class="day other-month">
-                <div class="date">10</div>
-            </td>
-            <td class="day other-month">
-                <div class="date">11</div>
-            </td>
-        </tr>
-        <tr class="days">
-            <td class="day other-month">
-                <div class="date">12</div>
-            </td>
-            <td class="day other-month">
-                <div class="date">13</div>
-            </td>
-            <td class="day other-month">
-                <div class="date">14</div>
-            </td>
-            <td class="day other-month">
-                <div class="date">15</div>
-            </td>
-            <td class="day other-month">
-                <div class="date">16</div>
-            </td>
-            <td class="day other-month">
-                <div class="date">17</div>
-            </td>
-            <td class="day other-month">
-                <div class="date">18</div>
-            </td>
-        </tr>
-        <tr class="days">
-            <td class="day other-month">
-                <div class="date">19</div>
-            </td>
-            <td class="day other-month">
-                <div class="date">20</div>
-            </td>
-            <td class="day other-month">
-                <div class="date">21</div>
-            </td>
-            <td class="day other-month">
-                <div class="date">22</div>
-            </td>
-            <td class="day other-month">
-                <div class="date">23</div>
-            </td>
-            <td class="day other-month">
-                <div class="date">24</div>
-            </td>
-            <td class="day other-month">
-                <div class="date">25</div>
-            </td>
-        </tr>
-        <tr class="days">
-            <td class="day other-month">
-                <div class="date">26</div>
-            </td>
-            <td class="day other-month">
-                <div class="date">27</div>
-            </td>
-            <td class="day other-month">
-                <div class="date">28</div>
-            </td>
-            <td class="day other-month">
-                <div class="date">29</div>
-            </td>
-            <td class="day other-month">
-                <div class="date">30</div>
-            </td>
-            <td class="day other-month">
-                <div class="date">31</div>
-            </td>
-            <td class="day other-month">
-                <div class="date">1</div>
-            </td>
-        </tr>
-    </table>
+        <h2 class="text-center"> Maintenance Machine Plan</h2>
+        <div class="row">
+            <div class="col-1">
+            </div>
+            <div class="col-10 d-flex justify-content-center" >
+                <a href="{{ route('showLastMonth',['monthShowNow'=>$monthShowNow]) }}" class="btn btn-primary btn-lg m-4 " role="button" aria-pressed="true"><</a>
+                <h3 class="m-4 mx-auto">{{ date('F-Y', $monthShowNow)}}</h3>
+                <a href="{{ route('showNextMonth',['monthShowNow'=>$monthShowNow]) }}" class="btn btn-primary btn-lg m-4" role="button" aria-pressed="true">></a>
+            </div>
+            <div class="col-1">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-10">
+            <table id="calendar">
+                <tr class="weekdays">
+                    @foreach($arrayDayofWeek as $DayofWeek)
+                        <th scope="col"> {{ $DayofWeek }}</th>
+                    @endforeach
+                </tr>
+                @foreach ($arrayDays as $weeks)
+                    <tr class="days">
+                        @for ($i = 0; $i < count($arrayDayofWeek); $i++)                  
+                            @foreach($weeks as $Day=>$day)                      
+                                    @if ($Day == $arrayDayofWeek[$i])  
+                                        {{-- caculate event totalOnDay, okOnday --}}
+                                        @php
+                                            $dayValue = $day; 
+                                            $okOnDay = $arrayMachineMaintenace[$day]['OK'];
+                                            $totalOnDay = $arrayMachineMaintenace[$day]['total'];
+                                            $daySelect = strtotime(date('Y/m',$monthShowNow)."/$dayValue");
+                                        @endphp
+                                        {{-- event to CCS --}}
+                                        @if ($daySelect == strtotime(date('Y/m/d')))  
+                                            @php
+                                            $eventDayCCS = "today";
+                                            if($totalOnDay == $okOnDay)
+                                            {
+                                                $eventCCS = 'event-success';
+                                            }
+                                            else {
+                                                $eventCCS = 'event-danger';
+                                            }
+                                            @endphp
+                                        @elseif ($daySelect < strtotime(date('Y/m/d')))  
+                                        @php
+                                            $eventDayCCS = "other-day";
+                                            if($totalOnDay == $okOnDay)
+                                            {
+                                                $eventCCS = 'event-success';
+                                            }
+                                            else {
+                                                $eventCCS = 'event-danger';
+                                            }
+                                            @endphp                                             
+                                        @elseif ($daySelect == strtotime(date('Y/m/d', strtotime("+1 day"))) ||
+                                                $daySelect == strtotime(date('Y/m/d', strtotime("+2 day"))) ||
+                                                $daySelect == strtotime(date('Y/m/d', strtotime("+3 day"))))
+                                                @php
+                                                    $eventDayCCS = "other-day";
+                                                    if($totalOnDay == $okOnDay)
+                                                    {
+                                                        $eventCCS = 'event-success';
+                                                    }
+                                                    else {
+                                                        $eventCCS = 'event-warning';
+                                                    }
+                                                @endphp                               
+                                        @else     
+                                            @php
+                                                $eventDayCCS = "other-day";
+                                                if($totalOnDay == $okOnDay)
+                                                    {
+                                                        $eventCCS = 'event-success';
+                                                    }
+                                                    else {
+                                                        $eventCCS = 'event-normal';
+                                                    }
+                                            @endphp                                       
+                                        @endif
+                                        {{-- event to display --}}
+                                        @php
+                                            $event = $totalOnDay == 0? "":" Job Order ($okOnDay/$totalOnDay)";
+                                        @endphp
+                                        @break
+                                    @else 
+                                        @php
+                                            $dayValue = "";
+                                            $event = ""; 
+                                            $eventDayCCS = "other-day";
+                                            $eventCCS = 'event-normal'; 
+                                        @endphp                              
+                                    @endif                                            
+                            @endforeach
+                            <td class="{{ $eventDayCCS }}"> 
+                                <div class="date">{{ $dayValue }}</div>
+                                @if ($event != "")                                
+                                <div class="event">                          
+                                        <a href="{{ route('listMachinePlan',['day'=>$daySelect]) }}" class="event-underline-hover {{ $eventCCS }} ">{{ $event }}</a>                                    
+                                </div>
+                                @endif
+                            </td>
+                        @endfor
+                    </tr>
+                @endforeach
+            </table>
+            </div>
+            <div class="col-1"></div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-1"></div>
+            <div class="col-10">
+                <a href="{{ route('newMachinePlan') }}" class="btn btn-primary btn-lg m-1 " role="button" aria-pressed="true">New plan</a>
+            </div>
+            <div class="col-1"></div>
+        </div>
 @endsection

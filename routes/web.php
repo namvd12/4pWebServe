@@ -22,10 +22,33 @@ use App\Mail\wellcome;
 
 Route::get('','App\Http\Controllers\web\login\loginController@index');
 
-Route::post('maintenacePlan','App\Http\Controllers\web\sparePart\maintenacePlanController@index')->name('maintenacePlan');
+/* maintenacePlan controller */
+Route::get('maintenacePlan','App\Http\Controllers\web\sparePart\maintenacePlanController@index')->name('maintenacePlan');
 
+Route::get('showNextMonth','App\Http\Controllers\web\sparePart\maintenacePlanController@showNextMonth')->name('showNextMonth');
+
+Route::get('showLastMonth','App\Http\Controllers\web\sparePart\maintenacePlanController@showLastMonth')->name('showLastMonth');
+
+Route::get('newMachinePlan','App\Http\Controllers\web\sparePart\maintenacePlanController@newMachinePlan')->name('newMachinePlan');
+
+Route::post('getMachineInfor','App\Http\Controllers\web\sparePart\maintenacePlanController@getMachineInfor')->name('getMachineInfor');
+
+Route::post('saveNewPlan','App\Http\Controllers\web\sparePart\newMachineMaintenaceController@newMachinePlan')->name('saveNewPlan');
+
+Route::get('listMachinePlan','App\Http\Controllers\web\sparePart\listMachinePlanController@index')->name('listMachinePlan');
+
+Route::get('updateMachinePlan','App\Http\Controllers\web\sparePart\updateMachinePlanController@updateView')->name('updateMachinePlan');
+
+Route::post('updateNewMachinePlan','App\Http\Controllers\web\sparePart\updateMachinePlanController@newMachinePlan')->name('updateNewMachinePlan');
+
+Route::post('saveMachinePlan','App\Http\Controllers\web\sparePart\updateMachinePlanController@save')->name('savePlan');
+
+Route::post('deleteMachinePlan','App\Http\Controllers\web\sparePart\updateMachinePlanController@deleteMachinePlan')->name('deleteMachinePlan');
+
+/* login controller */
 Route::post('loging','App\Http\Controllers\web\login\loginController@loging')->name('loging');
 
+/* newPassword controller */
 Route::get('newPassword','App\Http\Controllers\newPasswordController@newPassword')->name('newPassword');
 
 Route::post('resetPassword','App\Http\Controllers\newPasswordController@resetPassword')->name('resetPassword');
