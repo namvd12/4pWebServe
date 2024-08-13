@@ -77,7 +77,6 @@ function modalClick() {
 }
 
 function deleteClick(maintenaceID, time) {
-    console.log("deleteClick:" + maintenaceID);
     if (confirm("Do you want delete?")) {
         if (maintenaceID != null) {
             $.ajax({
