@@ -692,7 +692,7 @@ function drawChartReport_MTTR_MTBF(listDay, listMTTR) {
                 y: {
                     beginAtZero: true, // Bắt đầu y-axis từ 0
                     ticks: {
-                        display: true, //this will remove only the label
+                        display: false, //this will remove only the label
                     },
                     grid: {
                         display: true,
