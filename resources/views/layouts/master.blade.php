@@ -22,26 +22,29 @@
                 <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="{{ route('maintenacePlan') }}">Home</a>
                 </li>
-                {{-- <li class="nav-item">
-                <a class="nav-link" href="#">Device</a>
+                <li class="nav-item">
+                <a class="nav-link" href="{{ route('listDeviceAndHistory') }}">Device</a>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item">
+                <a class="nav-link" href="{{ route('viewReportAllLine') }}">Report</a>
+                </li>
+                {{-- <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Report </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">All line</a></li>
+                        <li><a class="dropdown-item" href="{{ route('viewReportAllLine') }}">All line</a></li>
                         <li><a class="dropdown-item" href="#">Each line</a></li>
                         <li><a class="dropdown-item" href="#">MTTR</a></li>
                         <li><a class="dropdown-item" href="#">MTTF</a></li>
                     </ul>
-                </li>
+                </li> --}}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Spare part </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="">Machine plan</a></li>
-                        <li><a class="dropdown-item" href="#">Spare part</a></li>
+                        <li><a class="dropdown-item" href="{{ route('maintenacePlan') }}">Machine plan</a></li>
+                        <li><a class="dropdown-item" href="{{ route('listSparePartView') }}">Spare part</a></li>
                     </ul>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link" href="">About</a>
                 </li> --}}
             </ul>
@@ -51,11 +54,12 @@
             </form>
           </div>
         </div>
-      </nav>
-    <div class="container " style="height: 1000px">
-        @yield('content')
+    </nav>
+    <div class="container">
+      @yield('content')
     </div>
-    {{-- footer --}}
+    <div style="height: 650px">
+    </div>
     <footer class="text-center text-lg-start text-white" style="background-color: #1c2331" >
       <div
           class="text-center p-3"

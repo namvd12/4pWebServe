@@ -45,6 +45,76 @@ Route::post('saveMachinePlan','App\Http\Controllers\web\sparePart\updateMachineP
 
 Route::post('deleteMachinePlan','App\Http\Controllers\web\sparePart\updateMachinePlanController@deleteMachinePlan')->name('deleteMachinePlan');
 
+/*list spare part */
+
+Route::get('listSparePartView','App\Http\Controllers\web\sparePart\listSparePartController@index')->name('listSparePartView');
+
+Route::get('NewSparePart','App\Http\Controllers\web\sparePart\listSparePartController@NewSparePart')->name('NewSparePart');
+
+Route::post('saveNewSparePart','App\Http\Controllers\web\sparePart\listSparePartController@saveNewSparePart')->name('saveNewSparePart');
+
+Route::post('updateTimeSparePart','App\Http\Controllers\web\sparePart\listSparePartController@updateTimeSparePart')->name('updateTimeSparePart');
+
+Route::get('editSparePart','App\Http\Controllers\web\sparePart\listSparePartController@editSparePart')->name('editSparePart');
+
+Route::post('saveEditSparePart','App\Http\Controllers\web\sparePart\listSparePartController@saveEditSparePart')->name('saveEditSparePart');
+
+Route::post('deleteSparePart','App\Http\Controllers\web\sparePart\listSparePartController@deleteSparePart')->name('deleteSparePart');
+
+/* list devices and history */
+Route::get('listDeviceAndHistory','App\Http\Controllers\web\devices\listDeviceAndHistory@index')->name('listDeviceAndHistory');
+
+Route::post('searchDevice','App\Http\Controllers\web\devices\listDeviceAndHistory@searchDevice')->name('searchDevice');
+
+Route::post('searchHistoryReport','App\Http\Controllers\web\devices\listDeviceAndHistory@searchHistoryReport')->name('searchHistoryReport');
+
+Route::get('newDevice','App\Http\Controllers\web\devices\listDeviceAndHistory@newDevice')->name('newDevice');
+
+Route::post('saveNewDevice','App\Http\Controllers\web\devices\listDeviceAndHistory@saveNewDevice')->name('saveNewDevice');
+
+Route::get('editDevice','App\Http\Controllers\web\devices\listDeviceAndHistory@editDevice')->name('editDevice');
+
+Route::post('saveEditDevice','App\Http\Controllers\web\devices\listDeviceAndHistory@saveEditDevice')->name('saveEditDevice');
+
+Route::post('deleteMachine','App\Http\Controllers\web\devices\listDeviceAndHistory@deleteMachine')->name('deleteMachine');
+
+/*Export history */
+Route::get('viewExport','App\Http\Controllers\web\devices\historyExportController@index')->name('viewExport');
+
+Route::post('exportData','App\Http\Controllers\web\devices\historyExportController@export')->name('exportData');
+
+/*Visual Reporting  */
+
+Route::get('viewReportAllLine','App\Http\Controllers\web\report\reportController@viewReportAllLine')->name('viewReportAllLine');
+
+/*All line */
+Route::post('viewReportCurrentByDay','App\Http\Controllers\web\report\reportController@viewReportCurrentByDay')->name('viewReportCurrentByDay');
+
+Route::post('viewReportCurrentByWeek','App\Http\Controllers\web\report\reportController@viewReportCurrentByWeek')->name('viewReportCurrentByWeek');
+
+Route::post('viewReportCurrentByMonth','App\Http\Controllers\web\report\reportController@viewReportCurrentByMonth')->name('viewReportCurrentByMonth');
+
+/*Each line */
+Route::post('viewReportEachLineByDay','App\Http\Controllers\web\report\reportController@viewReportEachLineByDay')->name('viewReportEachLineByDay');
+
+Route::post('viewReportEachLineByWeek','App\Http\Controllers\web\report\reportController@viewReportEachLineByWeek')->name('viewReportEachLineByWeek');
+
+Route::post('viewReportEachLineByMonth','App\Http\Controllers\web\report\reportController@viewReportEachLineByMonth')->name('viewReportEachLineByMonth');
+
+/*MTTR */
+Route::post('viewReportMTTRByDay','App\Http\Controllers\web\report\reportController@viewReportMTTRByDay')->name('viewReportMTTRByDay');
+
+Route::post('viewReportMTTRByWeek','App\Http\Controllers\web\report\reportController@viewReportMTTRByWeek')->name('viewReportMTTRByWeek');
+
+Route::post('viewReportMTTRByMonth','App\Http\Controllers\web\report\reportController@viewReportMTTRByMonth')->name('viewReportMTTRByMonth');
+
+
+/*MTBF */
+Route::post('viewReportMTBFByDay','App\Http\Controllers\web\report\reportController@viewReportMTBFByDay')->name('viewReportMTBFByDay');
+
+Route::post('viewReportMTBFByWeek','App\Http\Controllers\web\report\reportController@viewReportMTBFByWeek')->name('viewReportMTBFByWeek');
+
+Route::post('viewReportMTBFByMonth','App\Http\Controllers\web\report\reportController@viewReportMTBFByMonth')->name('viewReportMTBFByMonth');
 /* login controller */
 Route::post('loging','App\Http\Controllers\web\login\loginController@loging')->name('loging');
 

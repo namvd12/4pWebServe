@@ -192,4 +192,18 @@ class deviceStatus extends Model
         $theme_image_enc_little = base64_encode($contents);
         return  $theme_image_enc_little;
     }
+
+    public static function  updateDataHistoryByID($historyID, $troubleName, $issue, $checking1,$checking2, $action1, $action2, $result)
+    {
+        deviceStatus::where('tula_Key',$historyID)->update(
+            ['tula6'=>$troubleName,
+             'tula10'=>$issue,
+             'tula12'=>$checking1,
+             'tula14'=>$checking2,
+             'tula16'=>$action1,
+             'tula18'=>$action2,
+             'tula20'=>$result,
+             ]
+        );
+    }
 }

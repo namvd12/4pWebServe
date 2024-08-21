@@ -10,7 +10,7 @@
 @endsection
 @section("content")
     <h2 class="text-center">List machine plan</h2>
-    <table class="table table-bordered table-hover">
+    <table class="table table-bordered table-hover" id="mytable">
         <thead>
             <tr class="text-center">
                 <th>Line</th>
@@ -28,9 +28,9 @@
         </thead>
         <tbody>
             @foreach($listMachinePlan as $MachinePlan)
-            <tr class="text-center" style="vertical-align: middle">
-                <td>{{ $MachinePlan['line'] }}</td>
-                <td>{{ $MachinePlan['deviceName'] }}</td>
+            <tr class="text-center inforMachine-row" style="vertical-align: middle">
+                <td class="line-column">{{ $MachinePlan['line'] }}</td>
+                <td class="machine-column" >{{ $MachinePlan['deviceName'] }}</td>
                 <td>{{ $MachinePlan['item'] }}</td>
                 <td>{{ $MachinePlan['cycles'] }}</td>
                 <td>{{ $MachinePlan['timeLates'] }}</td>

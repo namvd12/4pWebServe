@@ -166,4 +166,22 @@ class user extends Model
         }
         return $listEmail;
     }
+
+    public static function getUserinforByID($ID)
+    {
+        $datas = user::where('tula1',$ID)->get();
+        $userInfor = convertDb::convertDataBase($datas, convertDb::$mapTable8, true); 
+        if(!count($userInfor))
+        {
+            return null;
+        }
+        return $userInfor;
+    }
+
+    public static function getUserinforByGroup($group)
+    {
+        $datas = user::where('tula2',$group)->get();
+        $userInfor = convertDb::convertDataBase($datas, convertDb::$mapTable8, true); 
+        return $userInfor;
+    }
 }

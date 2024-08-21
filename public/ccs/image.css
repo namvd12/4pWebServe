@@ -1,0 +1,13 @@
+.image-container {
+    position: static;
+    width: 100px; /*Adjust the initial image size */
+}
+
+.small-image {
+    width: 100%;
+    transition: transform 0.3s ease; /* Smooth transition */
+}
+
+.image-container:hover .small-image {
+    transform: scale(6); /* Enlarge the image on hover */
+}

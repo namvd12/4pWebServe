@@ -2,11 +2,17 @@
 @section("ccs")
     <link href="{{ asset('ccs/calendar.css')}}" rel="stylesheet" />
 @endsection
-@section("js")
-    
+@section("js") 
 @endsection
 @section("content")
         <h2 class="text-center"> Maintenance Machine Plan</h2>
+        <div class="row mt-4">
+            <div class="col-1"></div>
+            <div class="col-10">
+                <a href="{{ route('newMachinePlan') }}" class="btn btn-outline-primary btn-lg m-1 " role="button" aria-pressed="true">New plan</a>
+            </div>
+            <div class="col-1"></div>
+        </div>
         <div class="row">
             <div class="col-1">
             </div>
@@ -116,11 +122,5 @@
             </div>
             <div class="col-1"></div>
         </div>
-        <div class="row mt-4">
-            <div class="col-1"></div>
-            <div class="col-10">
-                <a href="{{ route('newMachinePlan') }}" class="btn btn-primary btn-lg m-1 " role="button" aria-pressed="true">New plan</a>
-            </div>
-            <div class="col-1"></div>
-        </div>
+
 @endsection

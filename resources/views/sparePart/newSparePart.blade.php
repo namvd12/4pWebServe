@@ -5,13 +5,14 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="{{asset('js/newMachinePlan.js')}}"></script>
+    <script src="{{asset('js/newSparePart.js')}}"></script>
 @endsection
 @section("content")
-    <h2 class="text-center"> New machine plan</h2>
+    <h2 class="text-center"> New Spare Part</h2>
     <div class="row">
         <div class="col-3"></div>
         <div class="col-5">
-            <form action="{{ route('saveNewPlan') }}" method="POST" >
+            <form action="{{ route('saveNewSparePart') }}" method="POST" >
                 @csrf
                 <div class="mb-3 mt-3">
                     <label class="mb-2" for="machineName "> Machine name: <span style="color: red">*</span></label>
@@ -31,24 +32,28 @@
                     <input type="text" class="form-control" style="background-color: whitesmoke" id="line" name="line"  readonly required>
                 </div>
                 <div class="mb-3 mt-3">
-                    <label class="mb-2" > Item: <span style="color: red">*</span></label>
-                    <input type="text" class="form-control" id="item" placeholder="Enter item name" name="item" required>
+                    <label class="mb-2" > Spare part code: <span style="color: red">*</span></label>
+                    <input type="text" class="form-control" id="sparePartCode" name="sparePartCode" placeholder="Enter spare part code"  required>
                 </div>
                 <div class="mb-3 mt-3">
-                    <label class="mb-2" > Cycle: <span style="color: red">*</span></label>
-                    <input type="number" class="form-control" id="cycle" placeholder="Enter cycle" name="cycle" required onchange="selectCycle()">
+                    <label class="mb-2" > Spare part name: <span style="color: red">*</span></label>
+                    <input type="text" class="form-control" id="sparePartName"  name="sparePartName" placeholder="Enter spare part name" required>
                 </div>
                 <div class="mb-3 mt-3">
-                    <label class="mb-2"> Time start: <span style="color: red">*</span></label>
-                    <input type="date" class="form-control" id="timeStart" placeholder="Enter time start" name="timeStart" required onchange="selectTimeStart()">
+                    <label class="mb-2"> Serial number: <span style="color: red">*</span></label>
+                    <input type="text" class="form-control" id="serialNumber" placeholder="Enter serial number" name="serialNumber" required>
                 </div>
                 <div class="mb-3 mt-3">
-                    <label class="mb-2" > Time Maintenace: <span style="color: red">*</span></label>
-                    <input type="date" class="form-control" id="timeEnd" name="timeEnd" required readonly>
+                    <label class="mb-2" > Number of stock:<span style="color: red">*</span></label>
+                    <input type="number" class="form-control" rows="3" id="numberOfStock" name="numberOfStock" placeholder="Enter number of stock" required>
                 </div>
                 <div class="mb-3 mt-3">
-                    <label class="mb-2" > Note:</label>
-                    <textarea class="form-control" rows="3" id="note" name="note"></textarea>
+                    <label class="mb-2" > Cycle:<span style="color: red">*</span></label>
+                    <input type="number" class="form-control" rows="3" id="cycle" name="cycle" placeholder="Enter cycle" required onchange="selectCycle()">
+                </div>
+                <div class="mb-3 mt-3">
+                    <label class="mb-2" > Replacement date: <span style="color: red">*</span></label>
+                    <input type="date" class="form-control" id="replacementDate" name="replacementDate" required onchange="selectReplacementDate()">
                 </div>
                 <div class="d-inline ">
                     <button  type="submit" class="btn btn-primary">Save</button>

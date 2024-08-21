@@ -31,19 +31,20 @@ class convertDb{
         'tula6' => 'troubleName', 
         'tula7' => 'time', 
         'tula8' => 'status', 
-        'tula9' => 'picture1', 
-        'tula10' => 'note1', 
-        'tula11' => 'picture2', 
-        'tula12' => 'note2', 
-        'tula13' => 'picture3', 
-        'tula14' => 'note3', 
-        'tula15' => 'picture4', 
-        'tula16' => 'note4', 
-        'tula17' => 'picture5', 
-        'tula18' => 'note5', 
-        'tula19' => 'picture6', 
-        'tula20' => 'note6', 
+        'tula9' => 'issue_picture', 
+        'tula10' => 'issue', 
+        'tula11' => 'checking_picture1', 
+        'tula12' => 'checking1', 
+        'tula13' => 'checking_picture2', 
+        'tula14' => 'checking2', 
+        'tula15' => 'action_picture1', 
+        'tula16' => 'action1', 
+        'tula17' => 'action_picture2', 
+        'tula18' => 'action2', 
+        'tula19' => 'result_picture', 
+        'tula20' => 'result', 
         'tula21' => 'subID', 
+        'tula22' => 'userID'
     ];
     // tula_table3,   // Client table
 
@@ -64,14 +65,14 @@ class convertDb{
     // tula_table5,   // Sparepart plan
     public static $mapTable5 = [
         'tula_Key' => 'sparePartID', 
-        'tula1' => 'deviceID', 
-        'tula2' => 'spareCode', 
-        'tula3' => 'spareName', 
-        'tula4' => 'timeMaintenace', 
-        'tula5' => 'timeRemaining', 
-        'tula6' => 'numberItem',
-        'tula7' => 'cycles',
-        'tula8' => 'timeRemaining',
+        'tula1'    => 'deviceID', 
+        'tula2'    => 'spareCode', 
+        'tula3'    => 'spareName', 
+        'tula4'    => 'serialNumber', 
+        'tula5'    => 'timeMaintenace', 
+        'tula6'    => 'numberItem',
+        'tula7'    => 'cycles',
+        'tula8'    => 'timeRemaining',
     ];
     
     // tula_table6,   // Status report

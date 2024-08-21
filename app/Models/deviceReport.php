@@ -85,7 +85,7 @@ class deviceReport extends Model
         $datas = deviceStatus::whereIn('tula_Key',$listHistoryNG_ID)
                             ->orderBy('tula_Key','DESC')
                             ->get();
-        $listHistory = convertDb::convertDataBase($datas, convertDb::$mapTable6, false);      
+        $listHistory = convertDb::convertDataBase($datas, convertDb::$mapTable2, false);      
         foreach($listHistory as $key=>$History)
         {
             // check image
@@ -107,5 +107,107 @@ class deviceReport extends Model
             $listHistory[$key]['tula12'] = $subDeviceInfor[0]['tula4'];
         }
         return $listHistory;
+    }
+
+    public static function listHistoryReportSearch($dataSearch, $timeFrom, $timeTo, $line = null)
+    {
+        // search list data form tula_key
+        if($line == null)
+        {
+            $datas = deviceReport::select("tula2")
+                                ->where("tula6","NG")
+                                ->WhereRaw("str_to_date(tula5,'%d-%m-%Y') BETWEEN \"$timeFrom\" AND \"$timeTo\"")
+                                ->orderBy('tula_Key','DESC')
+                                ->get();
+        }
+        else
+        {
+            $datas = deviceReport::select("tula2")
+            ->where("tula6","NG")
+            ->WhereRaw("str_to_date(tula5,'%d-%m-%Y') BETWEEN \"$timeFrom\" AND \"$timeTo\"")
+            ->Where("tula3","$line")
+            ->orderBy('tula_Key','DESC')
+            ->get();
+        }
+
+        $listHistoryNG_ID = convertDb::convertDataBase($datas, convertDb::$mapTable6, false);      
+        
+        if(!count($listHistoryNG_ID))
+        {  
+            return null;
+        }
+
+        $deviceInfor = device::findOneDevice($dataSearch);
+        if(count($deviceInfor))
+        {
+            $datas = deviceStatus::whereIn('tula_Key',$listHistoryNG_ID)
+                                ->where('tula8','Like',$dataSearch)
+                                ->orwhere('tula1',$deviceInfor[0]['deviceID'])
+                                ->orderBy('tula_Key','DESC')
+                                ->get();
+        }
+        else
+        {
+            $datas = deviceStatus::whereIn('tula_Key',$listHistoryNG_ID)
+            ->where('tula8','Like',$dataSearch)
+            ->orderBy('tula_Key','DESC')
+            ->get();
+        }
+        $listHistory = convertDb::convertDataBase($datas, convertDb::$mapTable2, true);      
+        foreach($listHistory as $key=>$History)
+        {
+            if($History['subID'] == null)
+            {
+                $History['subID'] =  $History['deviceKey'];
+            }
+            // search sub device information
+            $dataInfor = device::where('tula_Key',$History['subID'])->get();       
+            $subDeviceInfor = convertDb::convertDataBase($dataInfor, convertDb::$mapTable1, true); 
+            $listHistory[$key]['deviceName'] = $subDeviceInfor[0]['deviceName'];
+            $listHistory[$key]['line'] = $subDeviceInfor[0]['line'];
+            $listHistory[$key]['lane'] = $subDeviceInfor[0]['lane'];
+            $listHistory[$key]['topBot'] = $subDeviceInfor[0]['topBot'];
+
+            // search status OK near NG
+            $datas =  deviceStatus::where('tula_Key','>',$listHistory[$key]['historyID'])
+                        ->where('tula1',$listHistory[$key]['deviceKey'])
+                        ->where('tula8',"OK")
+                        ->limit(1)
+                        ->get();
+            $listHistoryOK_NearNG = convertDb::convertDataBase($datas, convertDb::$mapTable2, true);     
+            if(!count($listHistoryOK_NearNG))
+            {
+                $listHistory[$key]['timeOK'] = "";
+                $listHistory[$key]['statusOK'] = "Waiting";
+            }
+            else
+            {
+                $listHistory[$key]['timeOK'] =  $listHistoryOK_NearNG[0]['time'];
+                $listHistory[$key]['statusOK'] = "OK";
+            }
+        }
+        return $listHistory;
+    }
+
+    public static function historyByID($id)
+    {
+        $datas = deviceStatus::where('tula_Key', $id)->get();
+        $History = convertDb::convertDataBase($datas, convertDb::$mapTable2, true); 
+        if(!count($History))
+        {
+            return null;
+        }
+        // find device infor
+        $History = $History[0];
+        if($History['subID'] != null)
+        {
+            $deviceInfor = device::findOneDevice($History['subID']);
+        }
+        else
+        {
+            $deviceInfor = device::findOneDevice($History['deviceKey']);
+        }
+        
+        return array_merge($History, $deviceInfor[0]);
     }
 }

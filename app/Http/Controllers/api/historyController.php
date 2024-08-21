@@ -67,7 +67,7 @@ class historyController extends Controller
 		}	
 		else
 		{
-			$response["status"] = 0;
+			$response["status"] = 1;
 			$response["message"] = "No MC Error";
 			$response["total"]    = 0;
 		}

@@ -8,3 +8,6 @@ td {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+.container {
+    max-width: 1600px;
+}

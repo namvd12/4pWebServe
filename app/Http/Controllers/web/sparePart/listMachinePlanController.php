@@ -14,6 +14,7 @@ class listMachinePlanController extends Controller
         {
             $daySearch = $request->get('day');
             $listMachinePlan = machinePlan::getMachineMaintenaceOnDay($daySearch);
+            
             return view('sparepart.listMachinePlan',['listMachinePlan'=>$listMachinePlan]);
         }
     }  
