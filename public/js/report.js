@@ -726,7 +726,7 @@ function drawChartReport_MTTR_MTBF(listDay, listMTTR) {
                 },
             },
         },
-        // plugins: [ChartDataLabels], // Activate the plugin
+        plugins: [ChartDataLabels], // Activate the plugin
     });
 }
 function date_string(dateTime) {
