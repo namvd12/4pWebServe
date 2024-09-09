@@ -21,6 +21,12 @@ class loginController extends Controller
             $userInfor = user::login($user, $pass);
             if($userInfor != null)
             {
+                // Save userID to session
+                session(['lastActivityTime' => now()]);
+                session([
+                        'userKey' => $userInfor['userKey'],
+                        'userFullName' => $userInfor['fullName'],
+                        ]);
                 return redirect()->route('maintenacePlan');
             }
             else
@@ -32,5 +38,11 @@ class loginController extends Controller
         {
             return view('login');
         }
+    }
+    public function logout(Request $request)
+    {
+        session()->forget('userKey');
+        session()->forget('userFullName');
+        return view('login');
     }
 }

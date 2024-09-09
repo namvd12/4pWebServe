@@ -1,3 +1,6 @@
+.container {
+    max-width: 1400px;
+}
 body {
     font-family: Tahoma, "Segoe UI", Geneva, Verdana, sans-serif;
 }
@@ -50,6 +53,7 @@ caption {
 
 #calendar td {
     min-height: 100px;
+
     display: flex;
     flex-direction: column;
 }
@@ -73,10 +77,10 @@ caption {
 }
 #calendar .event {
     flex: 1 0 auto;
-    font-size: 16px;
+    font-size: 14px;
     border-radius: 4px;
     padding: 5px;
-    line-height: 25px;
+    line-height: 30 px;
     background: #ffffff;
     border: 1px solid #000000;
     color: #127f8d;
@@ -104,7 +108,9 @@ caption {
     color: #1ada13;
     text-decoration: none;
 }
-
+#calendar .event-underline-hover {
+    display: block;
+}
 #calendar .event-underline-hover:hover {
     text-decoration: underline;
 }

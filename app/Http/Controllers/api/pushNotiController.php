@@ -91,7 +91,7 @@ class pushNotiController extends Controller
         {
             $message []= CloudMessage::fromArray([
                 'notification' => $notification,    
-                'topic'=> 'Test', 
+                'topic'=> 'test', 
                 "android"=> [
                     "priority"=> "high",
                 ],
@@ -104,7 +104,6 @@ class pushNotiController extends Controller
                     ],
                 ],
             ]);
-
         }
         $messaging->sendall($message);
 

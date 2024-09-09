@@ -49,14 +49,27 @@ class maintenacePlanController extends Controller
             $arrayDays[$week][$dayOfWeek] = $dayofMonth;     
 
             // arrayDeviceMaintenace
-            $numberMachine = machinePlan::getNumberMachineMaintenaceOnDay($Day);
-            $numberMachineOK = machinePlan::getNumberMachineOKOnDay($Day);
-            $arrayMachineMaintenace[$dayofMonth]['total'] = $numberMachine;
-            $arrayMachineMaintenace[$dayofMonth]['OK'] = $numberMachineOK;
+            for($numberLine = 0; $numberLine <= 8; $numberLine++)
+            {
+                $numberPlan= machinePlan::getTotalPlanbyLine($Day, $numberLine);
+                $numberPlanOK = machinePlan::getTotalPlanOKbyLine($Day, $numberLine);
+
+                $arrayPlan[$numberLine][$dayofMonth]['total'] = $numberPlan;
+                $arrayPlan[$numberLine][$dayofMonth]['OK'] = $numberPlanOK;
+            }
         }
+
         return view("sparePart.maintenacePlan",['arrayDayofWeek'=>$arrayDayofWeek,
                                                 'arrayDays'=>$arrayDays,
-                                                'arrayMachineMaintenace' => $arrayMachineMaintenace,
+                                                'arrayPlanLine0' => $arrayPlan[0],
+                                                'arrayPlanLine1' => $arrayPlan[1],
+                                                'arrayPlanLine2' => $arrayPlan[2],
+                                                'arrayPlanLine3' => $arrayPlan[3],
+                                                'arrayPlanLine4' => $arrayPlan[4],
+                                                'arrayPlanLine5' => $arrayPlan[5],
+                                                'arrayPlanLine6' => $arrayPlan[6],
+                                                'arrayPlanLine7' => $arrayPlan[7],
+                                                'arrayPlanLine8' => $arrayPlan[8],                                               
                                                 'monthShowNow' => $firtDayOfMonth]);
     }
 

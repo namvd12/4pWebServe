@@ -20,7 +20,8 @@ class machinePlan extends Model
 
     public static function getMachineWarning()
     {
-        $datas = machinePlan::WhereRaw("str_to_date(tula4,'%d/%m/%Y') BETWEEN str_to_date(tula3,'%d/%m/%Y') AND DATE_ADD(NOW(), INTERVAL 4 DAY)")
+        $datas = machinePlan::WhereRaw("str_to_date(tula4,'%d/%m/%Y') BETWEEN NOW() AND DATE_ADD(NOW(), INTERVAL 4 DAY)")
+        ->where('tula7','WAITING')
         ->orderBy('tula_Key','DESC')
         ->get();
         $listMachinePlan = convertDb::convertDataBase($datas, convertDb::$mapTable4); 
@@ -60,10 +61,15 @@ class machinePlan extends Model
         return $listMachinePlan;
     }
 
-    public static function getMachineMaintenaceOnDay($daySearch)
+    public static function getMachineMaintenaceOnDay($daySearch, $line)
     {
         $daySearch = date('Y-m-d',$daySearch);
+
+        // search all device on line
+        $listDevice = device::getListdeviceByLine($line);
+
         $datas = machinePlan::WhereRaw("str_to_date(tula4,'%d/%m/%Y') BETWEEN \"$daySearch\" AND \"$daySearch\"")
+        ->whereIn('tula1', $listDevice)
         ->orderBy('tula_Key','DESC')
         ->get();
         $listMachinePlan = convertDb::convertDataBase($datas, convertDb::$mapTable4); 
@@ -103,16 +109,6 @@ class machinePlan extends Model
         return $listMachinePlan;
     }
 
-    public static function getNumberMachineMaintenaceOnDay($daySearch)
-    {
-        $daySearch = date('Y-m-d',$daySearch);
-        $datas = machinePlan::WhereRaw("str_to_date(tula4,'%d/%m/%Y') BETWEEN \"$daySearch\" AND \"$daySearch\"")
-        ->orderBy('tula_Key','DESC')
-        ->get();
-        $listMachinePlan = convertDb::convertDataBase($datas, convertDb::$mapTable4); 
-        return count($listMachinePlan);
-    }
-  
     public static function getNumberMachineWaitingOnDay($daySearch)
     {
         $daySearch = date('Y-m-d',$daySearch);
@@ -123,14 +119,51 @@ class machinePlan extends Model
         return count($listMachinePlan);
     }
 
-    public static function getNumberMachineOKOnDay($daySearch)
+    public static function getNumberMachineOKOnDay($daySearch, $numberLine)
     {
         $daySearch = date('Y-m-d',$daySearch);
+        // get list device_key in line
+        $listDevice = device::getListdeviceByLine($numberLine);
+
         $datas = machinePlan::WhereRaw("tula7 = 'OK' AND str_to_date(tula4,'%d/%m/%Y') BETWEEN \"$daySearch\" AND \"$daySearch\"")
+        ->whereIn('tula3',$listDevice)
         ->orderBy('tula_Key','DESC')
         ->get();
         $listMachinePlan = convertDb::convertDataBase($datas, convertDb::$mapTable4); 
         return count($listMachinePlan);
+    }
+
+    public static function getTotalPlanbyLine($daySearch, $line)
+    {
+        $daySearch = date('Y-m-d',$daySearch);
+
+        // get list device_key in line
+        $listDevice = device::getListdeviceByLine($line);
+   
+        $datas = machinePlan::WhereRaw("str_to_date(tula4,'%d/%m/%Y') BETWEEN \"$daySearch\" AND \"$daySearch\"")
+        ->whereIn('tula1',$listDevice)
+        ->orderBy('tula_Key','DESC')
+        ->get();
+
+        $listPlan = convertDb::convertDataBase($datas, convertDb::$mapTable4); 
+        $arrayTotalPlan = count($listPlan); 
+
+        return $arrayTotalPlan;
+    }
+    
+    public static function getTotalPlanOKbyLine($daySearch, $line)
+    {
+        $daySearch = date('Y-m-d',$daySearch);
+        // get list device_key in line
+        $listDevice = device::getListdeviceByLine($line);
+
+        $datas = machinePlan::WhereRaw("tula7 = 'OK' AND str_to_date(tula4,'%d/%m/%Y') BETWEEN \"$daySearch\" AND \"$daySearch\"")
+        ->whereIn('tula1',$listDevice)
+        ->orderBy('tula_Key','DESC')
+        ->get();
+        $listMachinePlan = convertDb::convertDataBase($datas, convertDb::$mapTable4); 
+        $arrayTotalPlan =  count($listMachinePlan);
+        return $arrayTotalPlan;
     }
 
     public static function addNewMachinePlan($machineID, $cycle, $timeStart, $timeEnd, $timeRemaining, $item, $status, $note)

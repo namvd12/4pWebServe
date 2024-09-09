@@ -10,10 +10,11 @@ class listMachinePlanController extends Controller
 {
     public function index(Request $request)
     {
-        if($request->get('day') !=null)
+        if($request->get('day') !=null && $request->get('line') !=null)
         {
             $daySearch = $request->get('day');
-            $listMachinePlan = machinePlan::getMachineMaintenaceOnDay($daySearch);
+            $line = $request->get('line');
+            $listMachinePlan = machinePlan::getMachineMaintenaceOnDay($daySearch, $line);
             
             return view('sparepart.listMachinePlan',['listMachinePlan'=>$listMachinePlan]);
         }

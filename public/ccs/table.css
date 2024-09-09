@@ -8,6 +8,12 @@ td {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+.email {
+    max-width: 130px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 .container {
     max-width: 1600px;
 }

@@ -96,4 +96,31 @@ class device extends Model
     {
         device::where('tula1', $deviceCode)->delete();
     }
+
+    public static function editCategoriOnDeviceByCode($deviceCode, $categoryID)
+    {
+        
+        device::where('tula1', $deviceCode)->update([
+            'tula13'=> $categoryID
+        ]);
+    }
+
+    public static function getListdeviceByCategory($categoryID)
+    {
+        $datas = device::where('tula13', $categoryID)->get();
+        $listDevices = convertDb::convertDataBase($datas,convertDb::$mapTable1);
+        return $listDevices;
+    }
+
+    public static function getListdeviceByLine($line)
+    {
+        $datas = device::select('tula_Key')->where('tula3', $line)->get();
+        $listDevices = convertDb::convertDataBase($datas,convertDb::$mapTable1);
+        return $listDevices;
+    }
+    
+    public static function deleteCatOnDevice($idCat)
+    {
+        device::where('tula13', $idCat)->update(['tula13' => ""]);
+    }
 }

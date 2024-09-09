@@ -18,20 +18,21 @@ class convertDb{
         'tula10' => 'model', 
         'tula11' => 'serial', 
         'tula12' => 'topBot', 
+        'tula13' => 'category', 
     ];
 
     // tula_table2,   // Status device
     public static $mapTable2 = [
         'tula_Key' => 'historyID', 
-        'tula1' => 'deviceKey', 
-        'tula2' => 'deviceName', 
-        'tula3' => 'line', 
-        'tula4' => 'lane', 
-        'tula5' => 'noTrouble', 
-        'tula6' => 'troubleName', 
-        'tula7' => 'time', 
-        'tula8' => 'status', 
-        'tula9' => 'issue_picture', 
+        'tula1'  => 'deviceKey', 
+        'tula2'  => 'deviceName', 
+        'tula3'  => 'line', 
+        'tula4'  => 'lane', 
+        'tula5'  => 'noTrouble', 
+        'tula6'  => 'troubleName', 
+        'tula7'  => 'time', 
+        'tula8'  => 'status', 
+        'tula9'  => 'issue_picture', 
         'tula10' => 'issue', 
         'tula11' => 'checking_picture1', 
         'tula12' => 'checking1', 
@@ -44,10 +45,21 @@ class convertDb{
         'tula19' => 'result_picture', 
         'tula20' => 'result', 
         'tula21' => 'subID', 
-        'tula22' => 'userID'
+        'tula22' => 'userID',
+        'tula23' => 'mode'
     ];
     // tula_table3,   // Client table
-
+    public static $mapTable3 = [
+        'tula_Key' => 'clientID', 
+        'tula1' => 'deviceID', 
+        'tula2' => 'deviceName', 
+        'tula3' => 'clientAddr', 
+        'tula4' => 'port', 
+        'tula5' => 'status', 
+        'tula6' => 'location_x',
+        'tula7' => 'location_y',
+        'tula8' => 'region'
+    ];
 
     // tula_table4,   // Machine plan
     public static $mapTable4 = [
@@ -87,7 +99,15 @@ class convertDb{
     ];
 
     // tula_table7,   // Setting system
-    
+    public static $mapTable7 = [
+        'tula_Key' => 'userKey', 
+        'tula1'    => 'configNum', 
+        'tula2'    => 'timeReportNG', 
+        'tula3'    => 'folderSaveReport', 
+        'tula4'    => 'lineWorking',
+        'tula5'    => 'modeSystem',
+    ];
+
     // tula_table8,   // User data
     public static $mapTable8 = [
         'tula_Key' => 'userKey', 
@@ -131,6 +151,15 @@ class convertDb{
         'tula_Key' => 'GroupPermissionID', 
         'tula1' => 'groupID', 
         'tula2' => 'permissionID', 
+    ];
+
+    // tula_table13, // Categories
+    public static $mapTable13 = [
+        'tula_Key' => 'catID', 
+        'tula1' => 'name', 
+        'tula2' => 'action', 
+        'tula3' => 'status', 
+        'tula4' => 'description', 
     ];
 
     public static function  convertDataBase($Datas, $mapTable, $isConvert = true)

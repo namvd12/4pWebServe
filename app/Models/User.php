@@ -118,6 +118,49 @@ class user extends Model
         return true;
     }
 
+    public static function editByUserID($userID, $userName, $passwordNew, $fullName, $phone, $email, $groupID, $topic, $userPosition)
+    {
+        $dataUpdate = array();
+        if($userPosition != '')
+        {
+            $dataUpdate['tula2'] = $userPosition;
+        }
+        if($userName != '')
+        {
+            $dataUpdate['tula3'] = $userName;
+        }
+        if($fullName != '')
+        {
+            $dataUpdate['tula5'] = $fullName;
+        }
+        if($phone != '')
+        {
+            $dataUpdate['tula6'] = $phone;
+        }
+        if($email != '')
+        {
+            $dataUpdate['tula7'] = $email;
+        }
+        if($groupID != '')
+        {
+            $dataUpdate['tula9'] = $groupID;
+        }
+        if($topic != '')
+        {
+            $dataUpdate['tula10'] = $topic;
+        }
+
+        if($passwordNew != '')
+        {
+            $passwordHash = password_hash($passwordNew, PASSWORD_DEFAULT);
+            $dataUpdate['tula4'] = $passwordHash;
+        }
+
+        user::where('tula1',$userID)->update( $dataUpdate);
+      
+        return true;
+    }
+    
     public static function findUserInfor($userOrEmail)
     {
         // search email on table 8: user
@@ -167,6 +210,34 @@ class user extends Model
         return $listEmail;
     }
 
+    public static function getUserinforByKey($ID)
+    {
+        $datas = user::where('tula_key',$ID)->get();
+        $userInfor = convertDb::convertDataBase($datas, convertDb::$mapTable8, true); 
+        if(!count($userInfor))
+        {
+            return null;
+        }
+        $userInfor =  $userInfor[0];
+        /*read data avatar */
+        $dirAvartar = $userInfor['avatar'];
+        $dataAvatar = "";
+        if(file_exists("$dirAvartar"))
+        {
+        $myFile = fopen($dirAvartar, "r") or die("Unable to open file!");
+        if(filesize($dirAvartar) > 0){
+        $dataAvatar = fread($myFile, filesize($dirAvartar));
+        fclose($myFile);
+        $userInfor['avatar'] = $dataAvatar;
+        }
+        }
+        else
+        {
+        $userInfor['avatar'] = "";
+        }
+        return $userInfor;
+    }
+
     public static function getUserinforByID($ID)
     {
         $datas = user::where('tula1',$ID)->get();
@@ -183,5 +254,47 @@ class user extends Model
         $datas = user::where('tula2',$group)->get();
         $userInfor = convertDb::convertDataBase($datas, convertDb::$mapTable8, true); 
         return $userInfor;
+    }
+
+    public static function getAllUserInfor()
+    {
+        $datas = user::all();
+        $listUserInfor = convertDb::convertDataBase($datas, convertDb::$mapTable8, true); 
+        return $listUserInfor;
+    }
+
+    public static function deleteByID($ID)
+    {
+        user::where('tula_Key', $ID)->delete();
+    }
+
+    public static function addNew($userID, $userName, $position, $fullName, $phone, $email, $groupID, $topic, $newPassword)
+    {
+        $hashPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+
+        // check userID
+        $userInfor = user::getUserinforByID($userID);
+        if($userInfor != null)
+        {
+            return false;
+        }
+        // check userName
+        $userInfor = user::findUserInfor($userName);
+        if($userInfor != null)
+        {
+            return false;
+        }
+        user::insert(['tula1'=>$userID,
+        'tula1'=>$userID,
+        'tula2'=>$position,
+        'tula3'=>$userName,
+        'tula4'=>$hashPassword,
+        'tula5'=>$fullName,
+        'tula6'=>$phone,
+        'tula7'=>$email,
+        'tula9'=>$groupID,
+        'tula10'=>$topic,
+    ]);
+        return true;
     }
 }

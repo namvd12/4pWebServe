@@ -75,6 +75,7 @@
                 @endforeach
             </tbody>
         </table>
+        <P>Click<a href="{{ $_SERVER['SERVER_ADDR'] }}"> here</a> to view detail Job Order.</P>
         <p>Thanks,<br>
             {{ config('app.name') }}</p>   
     <div class="footer">

@@ -3,7 +3,6 @@
     <link href="{{ asset('ccs/table.css')}}" rel="stylesheet" />
 @endsection
 @section("js")
-<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="{{asset('js/listSparePart.js')}}"></script>
     <script src="{{asset('js/newSparePart.js')}}"></script>

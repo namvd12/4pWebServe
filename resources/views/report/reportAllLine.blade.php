@@ -13,10 +13,10 @@
     <h2 class="text-center"> Visual Reporting</h2>
     <div class="row">
         <div class="col-12">
-            <button class="btn btn-outline-primary active" id="btn_allLine" onclick="viewModeClick('btn_allLine')">All line</button>
-            <button class="btn btn-outline-primary " id="btn_eachLine" onclick="viewModeClick('btn_eachLine')">Each line</button>
-            <button class="btn btn-outline-primary " id="btn_mttr" onclick="viewModeClick('btn_mttr')">MTTR</button>
-            <button class="btn btn-outline-primary " id="btn_mtbf" onclick="viewModeClick('btn_mtbf')">MTBF</button>
+            <button class="btn btn-outline-primary allLine active" id="btn_allLine" onclick="viewModeClick('btn_allLine')">All line</button>
+            <button class="btn btn-outline-primary eachLine" id="btn_eachLine" onclick="viewModeClick('btn_eachLine')">Each line</button>
+            <button class="btn btn-outline-primary mttr" id="btn_mttr" onclick="viewModeClick('btn_mttr')">MTTR</button>
+            <button class="btn btn-outline-primary mtbf" id="btn_mtbf" onclick="viewModeClick('btn_mtbf')">MTBF</button>
         </div>
     </div>
     <div class="row mt-3">
@@ -53,14 +53,13 @@
         // Add active class to the current button (highlight it)
         var btns = document.getElementsByClassName("btn");
         for (var i = 0; i < btns.length; i++) {
-          btns[i].addEventListener("click", function() {
-          var current = document.getElementsByClassName("active");
+            btns[i].addEventListener("click", function() {
+            const activeElements = document.querySelectorAll('.active');
           // remove all btn active
-          for(var j = 0; j < current.length; i++)
-          {
-              current[j].className = current[0].className.replace(" active", "");
-          }
-          this.className += " active";
+            activeElements.forEach(element => {
+                element.classList.remove('active');
+            });
+            this.classList.add('active');
           });
         }
     </script>
