@@ -366,7 +366,7 @@ function showCharReport_EachLine_ByMonth(month) {
 }
 function showChar_ReportMTTR_ByMonth(month) {
     $.ajax({
-        url: "viewReportMTRRByMonth",
+        url: "viewReportMTTRByMonth",
         type: "POST",
         data: {
             _token: $('meta[name="csrf-token"]').attr("content"),
