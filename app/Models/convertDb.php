@@ -19,6 +19,7 @@ class convertDb{
         'tula11' => 'serial', 
         'tula12' => 'topBot', 
         'tula13' => 'category', 
+        'tula14' => 'mode', 
     ];
 
     // tula_table2,   // Status device
