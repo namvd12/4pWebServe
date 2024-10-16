@@ -59,7 +59,7 @@ function viewModeClick(mode) {
     } else if (modeView == "btn_mttr") {
         document.getElementById("nameReport").innerHTML = "MTTR";
     } else if (modeView == "btn_mtbf") {
-        document.getElementById("nameReport").innerHTML = "MTBF";
+        document.getElementById("nameReport").innerHTML = "MTTF";
     }
     dateClicked();
 }
@@ -457,23 +457,23 @@ function drawChartReport(listDay, time_NG, count_NG) {
                     data: time_NG, // Data count time NG
                     backgroundColor: [
                         // Màu nền của các cột
-                        "rgba(255, 99, 132, 1)",
+                        // "rgba(255, 99, 132, 1)",
                         "rgba(54, 162, 235, 1)",
-                        "rgba(255, 206, 86, 1)",
-                        "rgba(75, 192, 192, 1)",
-                        "rgba(153, 102, 255, 1)",
-                        "rgba(255, 159, 64, 1)",
-                        "rgb(189, 182, 141,1)",
+                        // "rgba(255, 206, 86, 1)",
+                        // "rgba(75, 192, 192, 1)",
+                        // "rgba(153, 102, 255, 1)",
+                        // "rgba(255, 159, 64, 1)",
+                        // "rgb(189, 182, 141,1)",
                     ],
                     borderColor: [
                         // Màu viền của các cột
-                        "rgba(255, 99, 132, 1)",
+                        // "rgba(255, 99, 132, 1)",
                         "rgba(54, 162, 235, 1)",
-                        "rgba(255, 206, 86, 1)",
-                        "rgba(75, 192, 192, 1)",
-                        "rgba(153, 102, 255, 1)",
-                        "rgba(255, 159, 64, 1)",
-                        "rgb(189, 182, 141,1)",
+                        // "rgba(255, 206, 86, 1)",
+                        // "rgba(75, 192, 192, 1)",
+                        // "rgba(153, 102, 255, 1)",
+                        // "rgba(255, 159, 64, 1)",
+                        // "rgb(189, 182, 141,1)",
                     ],
                     borderWidth: 1, // Độ dày của viền
                     yAxisID: "y", // Sử dụng trục Y chính

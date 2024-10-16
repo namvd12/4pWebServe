@@ -116,6 +116,7 @@ class deviceReport extends Model
         {
             $datas = deviceReport::select("tula2")
                                 ->where("tula6","NG")
+                                ->whereIn("tula7",['run',''])
                                 ->WhereRaw("str_to_date(tula5,'%d-%m-%Y') BETWEEN \"$timeFrom\" AND \"$timeTo\"")
                                 ->orderBy('tula_Key','DESC')
                                 ->get();

@@ -53,6 +53,16 @@ class deviceStatus extends Model
             $listHistory[$key]['tula10'] = $subDeviceInfor[0]['tula1'];
             $listHistory[$key]['tula11'] = $subDeviceInfor[0]['tula3'];
             $listHistory[$key]['tula12'] = $subDeviceInfor[0]['tula4'];
+
+            // mode system
+            if($listHistory[$key]['tula23'] == null)
+            {
+                $listHistory[$key]['tula13'] = "Run";
+            }
+            else
+            {
+                $listHistory[$key]['tula13'] =  $listHistory[$key]['tula23'];
+            }
         }
         return $listHistory;
     }
@@ -193,7 +203,7 @@ class deviceStatus extends Model
         return  $theme_image_enc_little;
     }
 
-    public static function  updateDataHistoryByID($historyID, $troubleName, $issue, $checking1,$checking2, $action1, $action2, $result)
+    public static function updateDataHistoryByID($historyID, $troubleName, $issue, $checking1,$checking2, $action1, $action2, $result)
     {
         deviceStatus::where('tula_Key',$historyID)->update(
             ['tula6'=>$troubleName,

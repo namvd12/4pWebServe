@@ -26,7 +26,11 @@
     <div class="container login_container ">
         <div class="row justify-content-center mt-5">
             <div class="col-lg-4">
-                <form class="login" method="post" action="{{ route('loging') }}">
+                @if (isset($nextRequest))
+                    <form class="login" method="post" action="{{ route('loging',['nextRequest' => $nextRequest])}}">
+                @else    
+                    <form class="login" method="post" action="{{ route('loging')}}">
+                @endif
                     @csrf
                     <h2 class="text-center">Login Saban-Wi</h2>
                     <div class="text-center text-success font-weight-bold">

@@ -564,21 +564,6 @@ class reportController extends Controller
         }
         return $data;
     }
-    public function searchMttrByTime($time)
-    {
-        $listDay = ["Day1","Day2","Day3"];
-        $lineLTE = [1,2,3];
-        $line1 = [1,2,3];
-        $line2 = [1,2,3];
-        $line3 = [1,2,3];
-        $line4 = [1,2,3];
-        $line5 = [1,2,3];
-        $line6 = [1,2,3];
-        $line7 = [1,2,3];
-        $line8 = [1,2,3];
-        
-
-    }
 }
 
 function getMonthNumber($monthName) {

@@ -26,6 +26,9 @@ class checkRole
                 return $next($request);
             }
         }
-        return redirect()->route('login');
+        $fullPath = $request->fullUrl();
+        // $queryString = $request->getQueryString();
+        // $fullPath = $queryString ? $path . '?' . $queryString : $path;
+        return redirect()->route('login',['nextRequest' => $fullPath]);
     }
 }

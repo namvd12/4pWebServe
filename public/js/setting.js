@@ -160,9 +160,9 @@ function inputChange(element) {
 }
 function modeChange() {
     const mode = document.getElementById("modeSelect");
-    if (mode.value == "running") {
+    if (mode.value == "run") {
         mode.style.color = "limegreen";
-    } else if (mode.value == "testing") {
+    } else if (mode.value == "test") {
         mode.style.color = "brown";
     } else if (mode.value == "update") {
         mode.style.color = "blue";

@@ -159,11 +159,18 @@ Route::middleware(['role'])->group(function(){
 
     Route::post('saveAddNewUser','App\Http\Controllers\web\user\userController@saveAddNewUser')->name('saveAddNewUser');
     });
-
+    
+    // call material
+    Route::get('viewCallMaterial','App\Http\Controllers\web\callMaterial\callMaterialController@viewCallMaterial')->name('viewCallMaterial');
+    Route::post('updateStatusCall','App\Http\Controllers\web\callMaterial\callMaterialController@updateStatusCall')->name('updateStatusCall');
 });
 
 // test send mail
 Route::get('sendMail','App\Http\Controllers\Controller@view')->name('sendMail');
+
+// test notification
+Route::get('noti','App\Http\Controllers\web\notification\notiController@view')->name('noti');
+Route::get('sendCallMaterial','App\Http\Controllers\web\notification\notiController@sendNotification')->name('sendCallMaterial');
 
 // Route::resource('/admin','App\Http\Controllers\adminController')->middleware('role');
 

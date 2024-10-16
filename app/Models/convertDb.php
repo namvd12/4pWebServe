@@ -96,6 +96,7 @@ class convertDb{
         'tula4' => 'Lane', 
         'tula5' => 'time', 
         'tula6' => 'status', 
+        'tula7' => 'modeSystem', 
     ];
 
     // tula_table7,   // Setting system
@@ -160,6 +161,21 @@ class convertDb{
         'tula2' => 'action', 
         'tula3' => 'status', 
         'tula4' => 'description', 
+    ];
+    
+    // tula_table14, // Categories
+    public static $mapTable14 = [
+        'tula_Key' => 'callID', 
+        'tula1' => 'machineCode', 
+        'tula2' => 'line', 
+        'tula3' => 'lane', 
+        'tula4' => 'partNumber', 
+        'tula5' => 'slot', 
+        'tula6' => 'number', 
+        'tula7' => 'urgent', 
+        'tula8' => 'status', 
+        'tula9' => 'time', 
+        'tula10' => 'userCall',  
     ];
 
     public static function  convertDataBase($Datas, $mapTable, $isConvert = true)

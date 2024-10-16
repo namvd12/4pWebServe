@@ -10,11 +10,11 @@
                 $offSelect = "";
                 $color = "";
                 switch ($config['modeSystem']) {
-                    case 'running':
+                    case 'run':
                         $runningSelect = "selected";
                         $color = "limegreen";
                         break;
-                    case 'testing':
+                    case 'test':
                         $testingSelect = "selected";
                         $color = "brown";
                         break;
@@ -33,8 +33,8 @@
                 }
             @endphp                          
             <select class="form-select" style="color: {{ $color }}" id="modeSelect" onchange="modeChange()">
-                <option style="color: limegreen" value="running" {{ $runningSelect }}>Running</option>
-                <option style="color: brown" value="testing" {{ $testingSelect }}>Testing</option>
+                <option style="color: limegreen" value="run" {{ $runningSelect }}>Run</option>
+                <option style="color: brown" value="test" {{ $testingSelect }}>Test</option>
                 <option style="color: blue" value="update" {{ $updateSelect }}>Update</option>
                 <option style="color: red" value="off" {{ $offSelect }}>OFF</option>
             </select>
