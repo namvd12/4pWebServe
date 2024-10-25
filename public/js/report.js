@@ -59,7 +59,7 @@ function viewModeClick(mode) {
     } else if (modeView == "btn_mttr") {
         document.getElementById("nameReport").innerHTML = "MTTR";
     } else if (modeView == "btn_mtbf") {
-        document.getElementById("nameReport").innerHTML = "MTTF";
+        document.getElementById("nameReport").innerHTML = "MTBF";
     }
     dateClicked();
 }

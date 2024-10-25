@@ -101,6 +101,8 @@ Route::middleware(['role'])->group(function(){
 
     Route::post('deleteMachine','App\Http\Controllers\web\devices\listDeviceAndHistory@deleteMachine')->name('deleteMachine');
 
+    Route::post('deleteHistory','App\Http\Controllers\web\devices\listDeviceAndHistory@deleteHistory')->name('deleteHistory');
+
     /*Export history */
     Route::get('viewExport','App\Http\Controllers\web\devices\historyExportController@index')->name('viewExport');
 
@@ -161,6 +163,7 @@ Route::middleware(['role'])->group(function(){
     });
     
     // call material
+    Route::post('viewCallMaterialDay','App\Http\Controllers\web\callMaterial\callMaterialController@viewCallMaterialDay')->name('viewCallMaterialDay');
     Route::get('viewCallMaterial','App\Http\Controllers\web\callMaterial\callMaterialController@viewCallMaterial')->name('viewCallMaterial');
     Route::post('updateStatusCall','App\Http\Controllers\web\callMaterial\callMaterialController@updateStatusCall')->name('updateStatusCall');
 });

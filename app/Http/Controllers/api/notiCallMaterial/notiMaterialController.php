@@ -12,20 +12,19 @@ class notiMaterialController extends Controller
     {
         $requestDatas = json_decode($request->getContent(), TRUE);  // decode request
         $datas =  json_decode($requestDatas, TRUE);   // decode content
-        if(isset($datas['callID']) && isset($datas['machineCode']) && isset($datas['partNumber']))
+        if(isset($datas['callID']) && isset($datas['machineCode']) && isset($datas['user']) && isset($datas['slot']))
         {
             $callID = $datas['callID'];
             $user = $datas['user'];
             $machineCode = $datas['machineCode']; 
-            $partNumber = $datas['partNumber']; 
-            $message = $callID.";".$user.";".$machineCode.";".$partNumber;
+            $slot = $datas['slot']; 
+            $message = $callID.";".$user.";".$machineCode.";".$slot;
             event(new NotificationSent($message));   
             return 'true';
         }
         else
         {
             $machineCode = $datas['machineCode']; 
-            $partNumber = $datas['partNumber']; 
             return $machineCode;
         }
     }

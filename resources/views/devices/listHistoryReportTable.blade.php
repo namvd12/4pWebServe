@@ -1,3 +1,6 @@
+@php
+use App\Models\Permission;
+@endphp
 <table class="table table-hover table-bordered table-striped">
     <thead>
         <tr>
@@ -47,10 +50,15 @@
                     <td style="color: green">{{ $HistoryReport['statusOK'] }}</td>                   
                     <td>{{ $HistoryReport['timeOK'] }}</td>                     
                     <td>
-                        @php
-                            $historyID = $HistoryReport['historyID'];
-                        @endphp
-                        <a href="{{ route('viewExport',['historyID'=> $historyID]) }}" class="btn btn-outline-secondary">Export</a>
+                        @if ($HistoryReport['statusOK'] == "OK")                            
+                            @php
+                                $historyID = $HistoryReport['historyID'];
+                            @endphp
+                            <a href="{{ route('viewExport',['historyID'=> $historyID]) }}" class="btn btn-outline-secondary">Export</a>
+                            @if (Permission::userHasPermission(['Delete_history']))     
+                                <a class="btn btn-outline-danger" onclick="deleteHistoryClick('{{ $HistoryReport['historyID'] }}','{{ $HistoryReport['historyIDOK'] }}')">Delete</a>
+                            @endif
+                            @endif
                     </td>                           
                 </tr>
             @endforeach

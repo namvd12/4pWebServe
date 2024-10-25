@@ -90,7 +90,7 @@ class convertDb{
     
     // tula_table6,   // Status report
     public static $mapTable6 = [
-        'tula_Key' => 'historyID', 
+        'tula_Key' => 'reportID', 
         'tula1' => 'deviceID', 
         'tula2' => 'historyID', 
         'tula3' => 'Line', 
@@ -170,13 +170,13 @@ class convertDb{
         'tula1' => 'machineCode', 
         'tula2' => 'line', 
         'tula3' => 'lane', 
-        'tula4' => 'partNumber', 
+        'tula4' => 'position', 
         'tula5' => 'slot', 
-        'tula6' => 'number', 
-        'tula7' => 'urgent', 
-        'tula8' => 'status', 
-        'tula9' => 'time', 
-        'tula10' => 'userCall',  
+        'tula6' => 'urgent', 
+        'tula7' => 'status', 
+        'tula8' => 'time', 
+        'tula9' => 'userCall',
+        'tula10' => 'note',
     ];
 
     public static function  convertDataBase($Datas, $mapTable, $isConvert = true)

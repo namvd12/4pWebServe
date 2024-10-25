@@ -46,8 +46,8 @@ function createNotification(message) {
     console.log(myArray);
     let user = myArray[1];
     let machineCode = myArray[2];
-    let partNumber = myArray[3];
-    let text = machineCode + "[" + partNumber + "]";
+    let slot = myArray[3];
+    let text = "Machine: " + machineCode + " [" + slot + "]";
     const options = {
         body: text,
         icon: "image/notification.png",

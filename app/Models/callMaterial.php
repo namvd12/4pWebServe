@@ -18,8 +18,18 @@ class callMaterial extends Model
         return $listCallMaterial;
     }
 
-    public static function updateStatus($callID, $status)
+    public static function getByDay($date)
     {
-        callMaterial::where('tula_key', $callID)->update(['tula8' => $status]);
+        $datas = callMaterial::WhereRaw("str_to_date(tula8,'%d-%m-%Y') BETWEEN \"$date\" AND \"$date\"")
+        ->orderby('tula7','DESC')                    
+        ->orderby('tula6','DESC')                    
+        ->get();
+        $listCallMaterial = convertDb::convertDataBase($datas, convertDb::$mapTable14, true); 
+        return $listCallMaterial;
+    }
+
+    public static function updateStatus($callID, $status, $note)
+    {
+        callMaterial::where('tula_key', $callID)->update(['tula7' => $status,'tula10' => $note]);
     }
 }

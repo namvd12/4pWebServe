@@ -216,4 +216,8 @@ class deviceStatus extends Model
              ]
         );
     }
+    public static function deleteByID($id)
+    {
+        deviceStatus::where('tula_key', $id)->delete();
+    }
 }

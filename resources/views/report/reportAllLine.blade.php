@@ -16,7 +16,7 @@
             <button class="btn btn-outline-primary allLine active" id="btn_allLine" onclick="viewModeClick('btn_allLine')">All line</button>
             <button class="btn btn-outline-primary eachLine" id="btn_eachLine" onclick="viewModeClick('btn_eachLine')">Each line</button>
             <button class="btn btn-outline-primary mttr" id="btn_mttr" onclick="viewModeClick('btn_mttr')">MTTR</button>
-            <button class="btn btn-outline-primary mtbf" id="btn_mtbf" onclick="viewModeClick('btn_mtbf')">MTTF</button>
+            <button class="btn btn-outline-primary mtbf" id="btn_mtbf" onclick="viewModeClick('btn_mtbf')">MTBF</button>
         </div>
     </div>
     <div class="row mt-3">

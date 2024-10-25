@@ -23,9 +23,9 @@
             <label class="m-1" style="font-size: 20px">Status data</label>
             <input class=" m-1" type="text" name="dataHistorySearch" id="dataHistorySearch">
             <label class="m-1" style="font-size: 20px">From</label>
-            <input class="mx-2" type="date" name="timeFrom" id="timeFrom" value="{{ date('Y-m-d') }}">
+            <input class="form-control datePicker mx-2" type="date" name="timeFrom" id="timeFrom" value="{{ date('Y-m-d') }}">
             <label class="m-1" style="font-size: 20px">To</label>
-            <input class="mx-2" type="date" name="timeTo" id="timeTo" value="{{ date('Y-m-d') }}">
+            <input class="form-control datePicker mx-2" type="date" name="timeTo" id="timeTo" value="{{ date('Y-m-d') }}">
             <a class="btn btn-outline-primary mx-2" onclick="searchReportClick()">Search for report</a>
         </div>
     </div>

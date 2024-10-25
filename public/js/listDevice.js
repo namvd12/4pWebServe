@@ -69,3 +69,33 @@ function deleteMachineClick() {
         },
     });
 }
+function deleteHistoryClick(historyID, historyIDOK) {
+    var timeForm = document.getElementById("timeFrom").value;
+    var timeTo = document.getElementById("timeTo").value;
+    var dataSearch = document.getElementById("dataHistorySearch").value;
+    if (confirm("Do you want delete?")) {
+        $.ajax({
+            url: "deleteHistory",
+            type: "POST",
+            data: {
+                _token: $('meta[name="csrf-token"]').attr("content"),
+                historyID: historyID,
+                historyIDOK: historyIDOK,
+                timeForm: timeForm,
+                timeTo: timeTo,
+                dataSearch: dataSearch,
+            },
+            success: function (response) {
+                if (response != "Error") {
+                    $("#table").html(response);
+                } else {
+                    console.log(response);
+                    alert(response);
+                }
+            },
+            error: function (xhr) {
+                console.log(xhr.responseText);
+            },
+        });
+    }
+}

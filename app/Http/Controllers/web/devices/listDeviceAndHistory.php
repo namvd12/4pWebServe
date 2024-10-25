@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\device;
 use App\Models\deviceReport;
+use App\Models\deviceStatus;
+
 class listDeviceAndHistory extends Controller
 {
     public function index(Request $request)
@@ -123,4 +125,28 @@ class listDeviceAndHistory extends Controller
     //         return 'Error';
     //     }
     // }
+
+    public function deleteHistory(Request $request)
+    {
+        if($request->get('historyID') != null && $request->get('historyIDOK') != null)
+        { 
+            $historyID = $request->get('historyID');
+            $historyIDOK = $request->get('historyIDOK');
+            deviceStatus::deleteByID($historyID);
+            deviceStatus::deleteByID($historyIDOK);
+            deviceReport::deleteByIDHistory($historyID);
+            deviceReport::deleteByIDHistory($historyIDOK);
+
+            // refrest table
+            $dateForm = $request->get('timeForm') ;
+            $dateTo = $request->get('timeTo') ;
+            $dataSearch = $request->get('dataSearch') ;
+            $listHistoryReport  = deviceReport::listHistoryReportSearch( $dataSearch, $dateForm, $dateTo);
+            return view('devices.listHistoryReportTable',['listHistoryReport' => $listHistoryReport]);
+        }
+        else
+        {
+            return 'Error';
+        }
+    }
 }
