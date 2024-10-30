@@ -55,7 +55,7 @@ use App\Models\Permission;
                                 $historyID = $HistoryReport['historyID'];
                             @endphp
                             <a href="{{ route('viewExport',['historyID'=> $historyID]) }}" class="btn btn-outline-secondary">Export</a>
-                            @if (Permission::userHasPermission(['Delete_history']))     
+                            @if (Permission::userHasPermission(['Delete_user']))     
                                 <a class="btn btn-outline-danger" onclick="deleteHistoryClick('{{ $HistoryReport['historyID'] }}','{{ $HistoryReport['historyIDOK'] }}')">Delete</a>
                             @endif
                             @endif
