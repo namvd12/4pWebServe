@@ -174,32 +174,3 @@ Route::get('sendMail','App\Http\Controllers\Controller@view')->name('sendMail');
 // test notification
 Route::get('noti','App\Http\Controllers\web\notification\notiController@view')->name('noti');
 Route::get('sendCallMaterial','App\Http\Controllers\web\notification\notiController@sendNotification')->name('sendCallMaterial');
-
-// Route::resource('/admin','App\Http\Controllers\adminController')->middleware('role');
-
-// Route::get('/', function () {
-//     return view('home');
-// })->name('home');
-
-// Route::get('/products/{id}',[
-//     ProductsController::class,
-//     'detail'
-// ])->where('id','[0-9]+');
-// Route::get('/users',function()
-// {
-//     return 'this is user page';
-// });
-// //response an array
-// Route::get('/device',function(){
-//     return ['device 1', 'device 2', 'device 3'];
-// });
-// Route::get('/infor',function(){
-//     return response()->json()([
-//         'name' => 'device1',
-//         'SN' => 'ABC'
-//     ]);
-// });
-// //response another request = redirect
-// Route::get('/something',function(){
-//     return redirect('/');
-// });

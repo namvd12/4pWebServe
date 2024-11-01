@@ -4,11 +4,9 @@
 @section("js")
     <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
     <link href="{{ asset('ccs/table.css')}}" rel="stylesheet" />
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    @if (!isset($callID))    
-        <script src="{{asset('js/notification.js')}}"></script>
-        <script src="{{asset('js/pusher.js')}}"></script>
-    @endif
+    <meta name="csrf-token" content="{{ csrf_token() }}">      
+    <script src="{{asset('js/notification.js')}}"></script>
+    <script src="{{asset('js/pusher.js')}}"></script>
     <script src="{{asset('js/callMaterial.js')}}"></script>
 @endsection
 @section("content")

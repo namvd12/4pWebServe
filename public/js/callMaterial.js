@@ -58,6 +58,7 @@ function modalClick() {
                 if (response != "Error") {
                     // alert("Save done");
                     $(".modal").modal("hide");
+                    location.href = "/viewCallMaterial";
                     // location.reload();
                     // console.log(response);
                 } else {

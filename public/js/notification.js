@@ -46,8 +46,23 @@ function createNotification(message) {
     console.log(myArray);
     let user = myArray[1];
     let machineCode = myArray[2];
-    let slot = myArray[3];
-    let text = "Machine: " + machineCode + " [" + slot + "]";
+    let line = myArray[3];
+    let land = myArray[4];
+    let slot = myArray[5];
+    let time = myArray[6];
+    const d = new Date(time);
+    time = d.toLocaleTimeString();
+    let text =
+        "Machine: " +
+        machineCode +
+        " [Line: " +
+        line +
+        "/" +
+        land +
+        " Slot: " +
+        slot +
+        "]\r\n" +
+        time;
     const options = {
         body: text,
         icon: "image/notification.png",
@@ -65,6 +80,6 @@ function createNotification(message) {
     };
     notification.onclick = function () {
         var ip = "/viewCallMaterial?callID=" + myArray[0];
-        window.open(ip);
+        // window.open(ip, "_self");
     };
 }

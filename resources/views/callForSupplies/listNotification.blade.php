@@ -1,3 +1,6 @@
+@php
+use App\Models\User;
+@endphp
 <table class="table table-hover" id="mytable">
     <thead>
         <tr class="text-center">
@@ -35,10 +38,28 @@
             <td>{{ $call['machineCode'] }}</td>
             <td>{{ $call['line'] }}</td>
             <td>{{ $call['lane'] }}</td>
-            <td>{{ $call['position'] }}</td>
+            <td>
+            @if ($call['position'] == "T")              
+                TOP
+            @else
+                BOT
+            @endif
+            </td>
             <td>{{ $call['slot'] }}</td>
             <td>{{ $call['time'] }}</td>
-            <td>{{ $call['userCall'] }}</td>
+            <td>
+                @php
+                $userInfor = user::getUserinforByKey($call['userCall']);
+                if($userInfor != null)
+                {
+                    $call['userCall'] = $userInfor['userName'];
+                }
+                else {
+                    $call['userCall'] = "Unknows";
+                }
+                @endphp
+                {{ $call['userCall'] }}
+            </td>
             @if ($call['status'] == 'OK')
             @php
                     $colorStatus = 'green';
@@ -52,11 +73,12 @@
             @else
             @php
                     $colorStatus = 'red';
-                    if($call['urgent'] == 'HIGH')
+                    
+                    if($call['urgent'] == 'H')
                     {
                         $colorUrgent = 'red';
                     }
-                    elseif ($call['urgent'] == 'MID') {
+                    elseif ($call['urgent'] == 'M') {
                         $colorUrgent = 'blue';
                     }
                     else {                   
@@ -64,6 +86,19 @@
                     }
                     @endphp
             @endif
+            @php
+     
+            if($call['urgent'] == 'H')
+            {
+                $call['urgent'] = "HIGH";
+            }
+            elseif ($call['urgent'] == 'M') {
+                $call['urgent'] = "MID";
+            }
+            else {                   
+                $call['urgent'] = "LOW";
+            }
+            @endphp
             <td style="color: {{ $colorUrgent }} ;font-weight:bold">{{ $call['urgent'] }}</td>
             <td style="color: {{ $colorStatus }} ;font-weight:bold">{{ $call['status'] }}</td>
             <td>{{ $call['note'] }}</td>
