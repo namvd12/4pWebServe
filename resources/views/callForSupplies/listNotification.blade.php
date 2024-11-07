@@ -5,10 +5,10 @@ use App\Models\User;
     <thead>
         <tr class="text-center">
             <th>No.</th>
-            <th>Machine Code</th>
             <th>Line</th>
             <th>Lane</th>
             <th>Position</th>
+            <th>Machine</th>
             <th>Slot</th>
             <th>Time</th>
             <th>User</th>
@@ -35,16 +35,16 @@ use App\Models\User;
         @endif   
         <tr class="{{ $tableHighlight }} text-center" style="vertical-align: middle">
             <td>{{  ++$number }}</td>
-            <td>{{ $call['machineCode'] }}</td>
             <td>{{ $call['line'] }}</td>
             <td>{{ $call['lane'] }}</td>
             <td>
-            @if ($call['position'] == "T")              
+                @if ($call['position'] == "T")              
                 TOP
-            @else
+                @else
                 BOT
-            @endif
+                @endif
             </td>
+            <td>{{ $call['machineCode'] }}</td>
             <td>{{ $call['slot'] }}</td>
             <td>{{ $call['time'] }}</td>
             <td>
@@ -62,13 +62,13 @@ use App\Models\User;
             </td>
             @if ($call['status'] == 'OK')
             @php
-                    $colorStatus = 'green';
-                    $colorUrgent = 'green';
+                    $colorStatus = '';
+                    $colorUrgent = '';
                     @endphp
             @elseif($call['status'] == 'CANCEL')
             @php
-                    $colorStatus = 'Blue';
-                    $colorUrgent = 'Blue';
+                    $colorStatus = '';
+                    $colorUrgent = '';
             @endphp
             @else
             @php
@@ -99,17 +99,17 @@ use App\Models\User;
                 $call['urgent'] = "LOW";
             }
             @endphp
-            <td style="color: {{ $colorUrgent }} ;font-weight:bold">{{ $call['urgent'] }}</td>
-            <td style="color: {{ $colorStatus }} ;font-weight:bold">{{ $call['status'] }}</td>
+            <td style="color: {{ $colorUrgent }} ">{{ $call['urgent'] }}</td>
+            <td style="color: {{ $colorStatus }} ">{{ $call['status'] }}</td>
             <td>{{ $call['note'] }}</td>
             @if ($call['status'] == 'WAIT')
                 <td>
                     <a href="" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal" onclick="updateClick('{{ $call['callID'] }}','OK', '{{ $call['note'] }}')">OK</a>
-                    <a href="" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModal" onclick="updateClick('{{ $call['callID'] }}','CANCEL', '{{ $call['note'] }}')">Cancel</a>
+                    {{-- <a href="" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModal" onclick="updateClick('{{ $call['callID'] }}','CANCEL', '{{ $call['note'] }}')">Cancel</a> --}}
                 </td>
             @else                
                 <td>
-                    <a href="" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#myModal" onclick="updateClick('{{ $call['callID'] }}','OK', '{{ $call['note'] }}')">Edit</a>
+                    {{-- <a href="" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#myModal" onclick="updateClick('{{ $call['callID'] }}','OK', '{{ $call['note'] }}')">Edit</a> --}}
                 </td>
             @endif
         </tr>

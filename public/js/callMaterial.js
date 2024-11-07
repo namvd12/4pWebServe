@@ -38,12 +38,13 @@ function updateClick(callID, status, note) {
 // modal handle
 function checkRadio(status) {
     document.getElementById("status").value = status;
+    console.log(status);
 }
 function modalClick() {
     var callID = document.getElementById("callID").value;
     var status = document.getElementById("status").value;
     var note = document.getElementById("note").value;
-
+    console.log(status);
     if (callID != null && status != null) {
         $.ajax({
             url: "updateStatusCall",

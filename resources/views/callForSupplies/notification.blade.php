@@ -45,13 +45,13 @@
                 <input type="hidden" name="status" id="status" value=""/>
                 <label class="mb-2" > Status:</label>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioOK" checked onchange="checkRadio('OK')">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioOK" checked onclick="checkRadio('OK')">
                     <label class="form-check-label" for="flexRadioDefault1">
                         OK
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioWarning" onchange="checkRadio('CANCEL')">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioWarning" onclick="checkRadio('CANCEL')">
                     <label class="form-check-label" for="flexRadioDefault2">
                         Cancel
                     </label>
@@ -62,7 +62,7 @@
             <!-- Modal footer -->
             <div class="modal-footer">            
                 <button type="submit" class="btn btn-primary" id="modalSave" onclick="modalClick()">Save</button>
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
             </div>
             </div>
         </div>
