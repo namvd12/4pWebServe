@@ -4,10 +4,11 @@
 @section("js")
     <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
     <link href="{{ asset('ccs/table.css')}}" rel="stylesheet" />
-    <meta name="csrf-token" content="{{ csrf_token() }}">      
+    <meta name="csrf-token" content="{{ csrf_token() }}">  
     <script src="{{asset('js/notification.js')}}"></script>
     <script src="{{asset('js/pusher.js')}}"></script>
     <script src="{{asset('js/callMaterial.js')}}"></script>
+
 @endsection
 @section("content")
     <h1 class="text-center">Calling Materials</h1>

@@ -2,7 +2,10 @@
     <div class="card">
         <div class="card-header d-flex justify-content-between" style="background-color: whitesmoke; font-size: 130%">
             <label for="">Categorie Add</label>
-            <a class="btn btn-primary" onclick="saveNewCategories()">Save</a>
+            <div>
+                <a class="btn btn-primary" onclick="saveNewCategories()">Save</a>
+                <a href="javascript:window.location.href=window.location.href" class="btn btn-outline-primary">Cancel</a>
+            </div>
         </div>
         <div class="card-body">
             <form action="">

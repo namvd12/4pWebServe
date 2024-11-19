@@ -1,3 +1,6 @@
+@php
+use App\Models\Permission;
+@endphp
 @extends("layouts.master")
 @section("ccs")
     <link href="{{ asset('ccs/table.css')}}" rel="stylesheet" />
@@ -90,6 +93,9 @@
                                 $deviceID = $device['deviceID'];
                             @endphp
                             <a href="{{ route('editDevice',['deviceID' => $deviceID])}}" class="btn btn-outline-secondary">Edit</a>
+                            @if (Permission::userHasPermission(['Delete_user']))     
+                                <a class="btn btn-outline-danger" onclick="deleteDevice('{{ $deviceID }}')">Delete</a>
+                            @endif
                         </td>                           
                     </tr>
                     @endforeach

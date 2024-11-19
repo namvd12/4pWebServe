@@ -48,6 +48,9 @@
                 @include('user.categoriesEditTab')
                 @include('user.UsereditTab')
                 @include('user.UserAddTab')
+                @include('user.RFeditTab')
+                @include('user.RFAddTab')
+                @include('user.RFAddRegionTab')
             </div>
         </div>
    </div>

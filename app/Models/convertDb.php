@@ -51,15 +51,16 @@ class convertDb{
     ];
     // tula_table3,   // Client table
     public static $mapTable3 = [
-        'tula_Key' => 'clientID', 
+        'tula_Key' => 'RFID', 
         'tula1' => 'deviceID', 
-        'tula2' => 'deviceName', 
+        'tula2' => 'deviceCode', 
         'tula3' => 'clientAddr', 
         'tula4' => 'port', 
         'tula5' => 'status', 
         'tula6' => 'location_x',
         'tula7' => 'location_y',
-        'tula8' => 'region'
+        'tula8' => 'region',
+        'tula9' => 'numberDevice'
     ];
 
     // tula_table4,   // Machine plan

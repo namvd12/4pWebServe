@@ -99,3 +99,63 @@ function deleteHistoryClick(historyID, historyIDOK) {
         });
     }
 }
+
+function saveAddnewDevice() {
+    var machineCode = document.getElementById("machineCode").value;
+    var machineName = document.getElementById("machineName").value;
+    var model = document.getElementById("model").value;
+    var serial = document.getElementById("serial").value;
+    var topBot = document.getElementById("topBot").value;
+    var line = document.getElementById("line").value;
+    var lane = document.getElementById("lane").value;
+    $.ajax({
+        url: "saveNewDevice",
+        type: "POST",
+        data: {
+            _token: $('meta[name="csrf-token"]').attr("content"),
+            machineCode: machineCode,
+            machineName: machineName,
+            model: model,
+            serial: serial,
+            topBot: topBot,
+            line: line,
+            lane: lane,
+        },
+        success: function (response) {
+            if (response != "Error") {
+                alert("Save done");
+                window.location.href = response;
+            } else {
+                alert("Save error!!!");
+            }
+        },
+        error: function (xhr) {
+            console.log(xhr.responseText);
+        },
+    });
+}
+
+function deleteDevice(deviceID) {
+    if (confirm("Do you want delete?")) {
+        $.ajax({
+            url: "deleteDevice",
+            type: "POST",
+            data: {
+                _token: $('meta[name="csrf-token"]').attr("content"),
+                deviceID: deviceID,
+            },
+            success: function (response) {
+                if (response != "Error") {
+                    alert("Done");
+                    $("#table").html(response);
+                } else {
+                    console.log(response);
+                    alert(response);
+                }
+            },
+            error: function (xhr) {
+                console.log(xhr.responseText);
+            },
+        });
+    }
+}

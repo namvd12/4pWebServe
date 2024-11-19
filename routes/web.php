@@ -102,6 +102,8 @@ Route::middleware(['role'])->group(function(){
     Route::post('deleteMachine','App\Http\Controllers\web\devices\listDeviceAndHistory@deleteMachine')->name('deleteMachine');
 
     Route::post('deleteHistory','App\Http\Controllers\web\devices\listDeviceAndHistory@deleteHistory')->name('deleteHistory');
+    
+    Route::post('deleteDevice','App\Http\Controllers\web\devices\listDeviceAndHistory@deleteDevice')->name('deleteDevice');
 
     /*Export history */
     Route::get('viewExport','App\Http\Controllers\web\devices\historyExportController@index')->name('viewExport');
@@ -153,6 +155,7 @@ Route::middleware(['role'])->group(function(){
     /*User */
     Route::post('editUser','App\Http\Controllers\web\user\userController@editUser')->name('editUser');
 
+
     Route::post('saveEditUser','App\Http\Controllers\web\user\userController@saveEditUser')->name('saveEditUser');
 
     Route::post('deleteUser','App\Http\Controllers\web\user\userController@deleteUser')->name('deleteUser');
@@ -160,6 +163,23 @@ Route::middleware(['role'])->group(function(){
     Route::post('addNewUser','App\Http\Controllers\web\user\userController@addNewUser')->name('addNewUser');
 
     Route::post('saveAddNewUser','App\Http\Controllers\web\user\userController@saveAddNewUser')->name('saveAddNewUser');
+
+    /*RF client*/
+    Route::post('editRF','App\Http\Controllers\web\user\userController@editRF')->name('editRF');
+
+    Route::post('editRFRegion','App\Http\Controllers\web\user\userController@editRFRegion')->name('editRFRegion');
+
+    Route::post('saveEditRF','App\Http\Controllers\web\user\userController@saveEditRF')->name('saveEditRF');
+
+    Route::post('addNewRF','App\Http\Controllers\web\user\userController@addNewRF')->name('addNewRF');
+
+    Route::post('saveAddNewRF','App\Http\Controllers\web\user\userController@saveAddNewRF')->name('saveAddNewRF');
+
+    Route::post('deleteRF','App\Http\Controllers\web\user\userController@deleteRF')->name('deleteRF');
+    
+    Route::post('addNewRFRegion','App\Http\Controllers\web\user\userController@addNewRFRegion')->name('addNewRFRegion');
+
+    Route::post('saveRFRegion','App\Http\Controllers\web\user\userController@saveRFRegion')->name('saveRFRegion');
     });
     
     // call material
