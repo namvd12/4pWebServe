@@ -33,7 +33,14 @@ function updateClick(callID, status, note) {
         let radBtnDefault = document.getElementById("flexRadioWarning");
         radBtnDefault.checked = true;
     }
+    changeFocus("flexRadioOK");
     checkRadio(status);
+}
+function changeFocus(nextElementId) {
+    const nextElement = document.getElementById(nextElementId);
+    if (nextElement) {
+        nextElement.focus();
+    }
 }
 // modal handle
 function checkRadio(status) {

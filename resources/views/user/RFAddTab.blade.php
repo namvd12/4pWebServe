@@ -37,7 +37,7 @@
                     </div>
                     <div class="col-md-12">
                         <label for="">Number device</label>
-                        <input type="number" class="form-control" id="numberDevice_add" name="numberDevice_add" value="3">
+                        <input type="number" class="form-control" id="numberDevice_add" name="numberDevice_add" value="1">
                     </div>
                 </div>
             </form>

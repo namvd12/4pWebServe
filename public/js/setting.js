@@ -48,7 +48,7 @@ function saveProfile() {
     const srcImage = document.getElementById("avatar").getAttribute("src");
     const avatar = srcImage.split(",")[1]; // get base64
 
-    if (!validateEmail(email)) {
+    if (email != "" && !validateEmail(email)) {
         alert("Error format email !!!");
         return;
     }

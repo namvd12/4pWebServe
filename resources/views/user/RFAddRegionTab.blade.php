@@ -14,8 +14,9 @@
                         <label for="">Line</label>
                         <select class="form-select" id="line_region" name="line_region">
                         @for($line = 0 ; $line < 9 ; $line++)
-                            <option> {{ $line }}</option>
+                            <option> {{$line}}</option>
                         @endfor
+                        </select>
                     </div>
                     <div class="col-md-12">
                         <label for="">Region</label>
@@ -23,6 +24,7 @@
                         @for($number = 1 ; $number <= 20 ; $number++)
                             <option> {{"Region".$number }}</option>
                         @endfor
+                    </select>
                     </div>
                 </div>
             </form>

@@ -78,8 +78,13 @@ function createNotification(message) {
     notification.onshow = function () {
         playSound();
     };
-    notification.onclick = function () {
-        var ip = "/viewCallMaterial?callID=" + myArray[0];
-        // window.open(ip, "_self");
-    };
+    // notification.onclick = function () {
+    //     var ip = "/viewCallMaterial?callID=" + myArray[0];
+    //     // window.open(ip, "_self");
+    // };
+
+    // Automatically close the notification after 10 seconds
+    setTimeout(() => {
+        notification.close();
+    }, 10000);
 }

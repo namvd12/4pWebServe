@@ -11,7 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <link href="{{ asset('ccs/layout.css')}}" rel="stylesheet" />
+    <link href="{{ asset('css/layout.css')}}" rel="stylesheet" />
     <script src="{{asset('js/layout.js')}}"></script>
     @yield('ccs')
     @yield('js')

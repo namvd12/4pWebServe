@@ -1,4 +1,17 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css"
+    "/js/bootstrap.js": "/js/bootstrap.js",
+    "/js/callMaterial.js": "/js/callMaterial.js",
+    "/js/exportData.js": "/js/exportData.js",
+    "/js/layout.js": "/js/layout.js",
+    "/js/listDevice.js": "/js/listDevice.js",
+    "/js/listMachinePlan.js": "/js/listMachinePlan.js",
+    "/js/listSparePart.js": "/js/listSparePart.js",
+    "/js/newMachinePlan.js": "/js/newMachinePlan.js",
+    "/js/newPassword.js": "/js/newPassword.js",
+    "/js/newSparePart.js": "/js/newSparePart.js",
+    "/js/notification.js": "/js/notification.js",
+    "/js/pusher.js": "/js/pusher.js",
+    "/js/report.js": "/js/report.js",
+    "/js/setting.js": "/js/setting.js"
 }

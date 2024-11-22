@@ -21,7 +21,7 @@
                             @endif
                         </div>
                         <div class="d-flex btn btn-outline-primary m-3 justify-content-center">
-                            <label class="form-label mb-0 text-center" for="customFile2">Edit</label>
+                            <label class="form-label mb-0 text-center" for="customFile2">Update picture</label>
                             <input type="file" class="form-control d-none" id="customFile2" onchange="displaySelectedImage(event,'avatar')"/>
                         </div>
                     </div>

@@ -1,6 +1,6 @@
 @extends("layouts.master")
 @section("ccs")
-    <link href="{{ asset('ccs/calendar.css')}}" rel="stylesheet" />
+    <link href="{{ asset('css/calendar.css')}}" rel="stylesheet" />
 @endsection
 @section("js") 
 @endsection

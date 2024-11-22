@@ -1,6 +1,6 @@
 @extends("layouts.master")
 @section("ccs")
-    <link href="{{ asset('ccs/image.css')}}" rel="stylesheet" />
+    <link href="{{ asset('css/image.css')}}" rel="stylesheet" />
 @endsection
 @section("js")
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
