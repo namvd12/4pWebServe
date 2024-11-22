@@ -11,10 +11,16 @@ const mix = require("laravel-mix");
  |
  */
 
-mix.js("resources/js/app.js", "public/js").postCss(
-    "resources/css/app.css",
-    "public/css",
-    [
-        //
-    ]
-);
+// mix.js("resources/js/testMix.js", "public/js").postCss(
+//     "resources/css/app.css",
+//     "public/css",
+//     [
+//         //
+//     ]
+// );
+const glob = require("glob");
+
+// Build tất cả các tệp JS trong thư mục resources/js
+glob.sync("resources/js/**/*.js").forEach((file) => {
+    mix.js(file, "public/js");
+});

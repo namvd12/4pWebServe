@@ -1,7 +1,7 @@
 @php
 use App\Models\User;
 @endphp
-<table class="table table-hover" id="mytable">
+<table class="table table-hover table-striped" id="mytable">
     <thead>
         <tr class="text-center">
             <th>No.</th>
@@ -15,7 +15,7 @@ use App\Models\User;
             <th>Urgent</th>
             <th>Status</th>
             <th>Note</th>
-            <th>Handle</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>

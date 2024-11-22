@@ -23,6 +23,7 @@ class callMaterial extends Model
         $datas = callMaterial::WhereRaw("str_to_date(tula8,'%d-%m-%Y') BETWEEN \"$date\" AND \"$date\"")
         ->orderby('tula7','DESC')                    
         ->orderby('tula6','ASC')                    
+        ->orderby('tula8','ASC')                    
         ->get();
         $listCallMaterial = convertDb::convertDataBase($datas, convertDb::$mapTable14, true); 
         return $listCallMaterial;

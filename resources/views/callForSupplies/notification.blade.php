@@ -3,8 +3,11 @@
 @endsection
 @section("js")
     <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
-    <link href="{{ asset('css/table.css')}}" rel="stylesheet" />
     <meta name="csrf-token" content="{{ csrf_token() }}">  
+    <link href="{{ asset('css/table.css')}}" rel="stylesheet" />
+    <script>
+        window.APP_ENV = "{{ env('APP_ENV', 'develop') }}";
+    </script>
     <script src="{{asset('js/notification.js')}}"></script>
     <script src="{{asset('js/pusher.js')}}"></script>
     <script src="{{asset('js/callMaterial.js')}}"></script>

@@ -12,7 +12,7 @@
    <div class="row">
         <div class="col-md-2 col-xl-3">
             <div class="card">
-                <div class="card-header" style="background-color: whitesmoke; font-size: 130%">Setting</div>
+                <div class="card-header" style="background-color: whitesmoke; font-size: 130%">Settings</div>
                 <div class="card-body">
                     <div class="list-group list-group-flush">
                         <a class="list-group-item list-group-item-action" onclick="listSettingClick('profileTab')">Profile</a>
