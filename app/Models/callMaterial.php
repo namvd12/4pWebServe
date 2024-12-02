@@ -20,17 +20,23 @@ class callMaterial extends Model
 
     public static function getByDay($date)
     {
-        $datas = callMaterial::WhereRaw("str_to_date(tula8,'%d-%m-%Y') BETWEEN \"$date\" AND \"$date\"")
+        $datas = callMaterial::select()
+        ->WhereRaw("str_to_date(tula8,'%d-%m-%Y') BETWEEN \"$date\" AND \"$date\"")
         ->orderby('tula7','DESC')                    
         ->orderby('tula6','ASC')                    
-        ->orderby('tula8','ASC')                    
-        ->get();
-        $listCallMaterial = convertDb::convertDataBase($datas, convertDb::$mapTable14, true); 
-        return $listCallMaterial;
+        ->orderby('tula8','ASC') 
+        ->limit(100)
+        ->get();   
+        return $datas;
     }
 
     public static function updateStatus($callID, $status, $note)
     {
         callMaterial::where('tula_key', $callID)->update(['tula7' => $status,'tula10' => $note]);
+    }
+
+    public static function updateStatusOKAll()
+    {
+        callMaterial::where('tula7', 'WAIT')->update(['tula7' => "OK"]);
     }
 }

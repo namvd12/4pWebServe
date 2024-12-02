@@ -3,11 +3,11 @@
 @endsection
 @section("js")
     <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
-    <meta name="csrf-token" content="{{ csrf_token() }}">  
     <link href="{{ asset('css/table.css')}}" rel="stylesheet" />
     <script>
         window.APP_ENV = "{{ env('APP_ENV', 'develop') }}";
     </script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">  
     <script src="{{asset('js/notification.js')}}"></script>
     <script src="{{asset('js/pusher.js')}}"></script>
     <script src="{{asset('js/callMaterial.js')}}"></script>
@@ -22,9 +22,10 @@
         <div class="col-2">
             <input class="form-control datePicker" type="date" name="daySearch" id="daySearch" value="{{ date('Y-m-d') }}" onchange="dateClicked()">   
         </div>
-        <div class="col-1 text-center">
-        </div>
-        <div class="col-2">
+        <div class="col-9 text-center">
+            <div class="d-flex justify-content-end">
+                <button class="btn btn-outline-primary" onclick="selectOKAll()"> Select OK all</button>
+            </div>
         </div>
     </div>
     <div class="row mt-4">  
@@ -32,11 +33,16 @@
             @include('callForSupplies.listNotification')
         </div>
     </div>
+    <div class="row mt-4">
+        <!-- Hiển thị liên kết phân trang -->
+        {{-- <div class="d-flex justify-content-end">
+            {{ $listCall->links('pagination::bootstrap-4') }}
+        </div> --}}
+    </div>
      <!-- The Modal -->
      <div class="modal" id="myModal">   
         <div class="modal-dialog">
             <div class="modal-content">
-                <form id = modalForm>
                     <!-- Modal Header -->
                     <div class="modal-header">
                         <h4 class="modal-title">Update status</h4>
@@ -68,7 +74,6 @@
                         <button type="submit" class="btn btn-primary" id="modalSave" onclick="modalClick()">Save</button>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
                     </div>
-                </form>
             </div>
         </div>
     </div>

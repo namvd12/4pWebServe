@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class checkRole
 {
-    private $timeout = 2;
+    private $timeout = 24*7;
     /**
      * Handle an incoming request.
      *

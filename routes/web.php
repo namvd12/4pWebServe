@@ -186,6 +186,8 @@ Route::middleware(['role'])->group(function(){
     Route::post('viewCallMaterialDay','App\Http\Controllers\web\callMaterial\callMaterialController@viewCallMaterialDay')->name('viewCallMaterialDay');
     Route::get('viewCallMaterial','App\Http\Controllers\web\callMaterial\callMaterialController@viewCallMaterial')->name('viewCallMaterial');
     Route::post('updateStatusCall','App\Http\Controllers\web\callMaterial\callMaterialController@updateStatusCall')->name('updateStatusCall');
+
+    Route::post('updateStatusOkAll','App\Http\Controllers\web\callMaterial\callMaterialController@updateStatusOkAll')->name('updateStatusOkAll');
 });
 
 // test send mail

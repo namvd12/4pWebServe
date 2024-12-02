@@ -20,7 +20,7 @@ $(document).ready(function () {
                 }
             },
         });
-    }, 1000); // function will run every 5 seconds
+    }, 1500); // function will run every 5 seconds
 });
 
 function updateClick(callID, status, note) {
@@ -33,7 +33,7 @@ function updateClick(callID, status, note) {
         let radBtnDefault = document.getElementById("flexRadioWarning");
         radBtnDefault.checked = true;
     }
-    changeFocus("flexRadioOK");
+    changeFocus("modalSave");
     checkRadio(status);
 }
 function changeFocus(nextElementId) {
@@ -111,6 +111,30 @@ function toDayClicked(date) {
         success: function (response) {
             var data = response; // response data from your php script
             $("#table").html(response);
+        },
+        error: function (xhr) {
+            console.log(xhr.responseText);
+        },
+    });
+}
+
+function selectOKAll() {
+    $.ajax({
+        url: "updateStatusOkAll",
+        type: "POST",
+        data: {
+            _token: $('meta[name="csrf-token"]').attr("content"),
+        },
+        success: function (response) {
+            if (response != "Error") {
+                // alert("Save done");
+                $(".modal").modal("hide");
+                location.href = "/viewCallMaterial";
+                // location.reload();
+                // console.log(response);
+            } else {
+                alert("Save error");
+            }
         },
         error: function (xhr) {
             console.log(xhr.responseText);

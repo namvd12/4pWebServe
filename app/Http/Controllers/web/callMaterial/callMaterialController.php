@@ -12,10 +12,10 @@ class callMaterialController extends Controller
     {
         $callID = null;
         $date = date('Y-m-d');
-        if(isset($request['callID']))
-        {
-            $callID = $request['callID'];
-        }
+        // if(isset($request['callID']))
+        // {
+        //     $callID = $request['callID'];
+        // }
         $listCall = callMaterial::getByDay($date);
         return view('callForSupplies.notification',['listCall' => $listCall,
                                                     'callID' => $callID]);
@@ -55,5 +55,11 @@ class callMaterialController extends Controller
         {
             return "Error";
         }
+    }
+
+    public function updateStatusOkAll(Request $request)
+    {
+        callMaterial::updateStatusOKAll();
+        return "OK";
     }
 }

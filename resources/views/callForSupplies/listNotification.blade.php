@@ -24,7 +24,7 @@ use App\Models\User;
          @endphp
         @forEach($listCall as $call)
 
-        @if ($call['callID'] == $callID)
+        @if ($call->tula_Key == $callID)
             @php
                 $tableHighlight =  "table-warning";
             @endphp
@@ -35,37 +35,37 @@ use App\Models\User;
         @endif   
         <tr class="{{ $tableHighlight }} text-center" style="vertical-align: middle">
             <td>{{  ++$number }}</td>
-            <td>{{ $call['line'] }}</td>
-            <td>{{ $call['lane'] }}</td>
+            <td>{{ $call->tula2 }}</td>
+            <td>{{ $call->tula3 }}</td>
             <td>
-                @if ($call['position'] == "T")              
+                @if ($call->tula4 == "T")              
                 TOP
                 @else
                 BOT
                 @endif
             </td>
-            <td>{{ $call['machineCode'] }}</td>
-            <td>{{ $call['slot'] }}</td>
-            <td>{{ $call['time'] }}</td>
+            <td>{{ $call->tula1 }}</td>
+            <td>{{ $call->tula5 }}</td>
+            <td>{{ $call->tula8 }}</td>
             <td>
                 @php
-                $userInfor = user::getUserinforByKey($call['userCall']);
+                $userInfor = user::getUserinforByKey($call->tula9);
                 if($userInfor != null)
                 {
-                    $call['userCall'] = $userInfor['userName'];
+                    $call->tula9 = $userInfor['userName'];
                 }
                 else {
-                    $call['userCall'] = "Unknows";
+                    $call->tula9 = "Unknows";
                 }
                 @endphp
-                {{ $call['userCall'] }}
+                {{  $call->tula9 }}
             </td>
-            @if ($call['status'] == 'OK')
+            @if ($call->tula7 == 'OK')
             @php
                     $colorStatus = '';
                     $colorUrgent = '';
                     @endphp
-            @elseif($call['status'] == 'CANCEL')
+            @elseif($call->tula7 == 'CANCEL')
             @php
                     $colorStatus = '';
                     $colorUrgent = '';
@@ -74,11 +74,11 @@ use App\Models\User;
             @php
                     $colorStatus = 'red';
                     
-                    if($call['urgent'] == 'H')
+                    if($call->tula6 == 'H')
                     {
                         $colorUrgent = 'red';
                     }
-                    elseif ($call['urgent'] == 'M') {
+                    elseif ($call->tula6 == 'M') {
                         $colorUrgent = 'blue';
                     }
                     else {                   
@@ -88,23 +88,23 @@ use App\Models\User;
             @endif
             @php
      
-            if($call['urgent'] == 'H')
+            if($call->tula6 == 'H')
             {
-                $call['urgent'] = "HIGH";
+                $call->tula6 = "HIGH";
             }
-            elseif ($call['urgent'] == 'M') {
-                $call['urgent'] = "MID";
+            elseif ($call->tula6 == 'M') {
+                $call->tula6 = "MID";
             }
             else {                   
-                $call['urgent'] = "LOW";
+                $call->tula6 = "LOW";
             }
             @endphp
-            <td style="color: {{ $colorUrgent }} ">{{ $call['urgent'] }}</td>
-            <td style="color: {{ $colorStatus }} ">{{ $call['status'] }}</td>
-            <td>{{ $call['note'] }}</td>
-            @if ($call['status'] == 'WAIT')
+            <td style="color: {{ $colorUrgent }} ">{{ $call->tula6}}</td>
+            <td style="color: {{ $colorStatus }} ">{{ $call->tula7 }}</td>
+            <td>{{ $call->tula10 }}</td>
+            @if ($call->tula7 == 'WAIT')
                 <td>
-                    <a href="" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal" onclick="updateClick('{{ $call['callID'] }}','OK', '{{ $call['note'] }}')">OK</a>
+                    <a href="" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal" onclick="updateClick('{{ $call->tula_Key }}','OK', '{{ $call->tula10 }}')">OK</a>
                     {{-- <a href="" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModal" onclick="updateClick('{{ $call['callID'] }}','CANCEL', '{{ $call['note'] }}')">Cancel</a> --}}
                 </td>
             @else                
