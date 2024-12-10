@@ -21,7 +21,7 @@ class callMaterial extends Model
     public static function getByDay($date)
     {
         $datas = callMaterial::select()
-        ->WhereRaw("str_to_date(tula8,'%d-%m-%Y') BETWEEN \"$date\" AND \"$date\"")
+        ->whereRaw("STR_TO_DATE(tula8, '%d-%m-%Y') = ?", [$date])
         ->orderby('tula7','DESC')                    
         ->orderby('tula6','ASC')                    
         ->orderby('tula8','ASC') 
