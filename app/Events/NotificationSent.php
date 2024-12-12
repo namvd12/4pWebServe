@@ -19,9 +19,17 @@ class NotificationSent implements ShouldBroadcast
   
     public function broadcastOn()
     {
-        if(env("APP_ENV","develop") == "product")
+        if(env("APP_ENV") == "product")
         {
             return ['notifications4p'];
+        }
+        else if(env("APP_ENV") == "dev2")
+        {
+            return ['notificationsDev2'];
+        }
+        else if(env("APP_ENV") == "dev1")
+        {
+            return ['notificationsDev1'];
         }
         else
         {

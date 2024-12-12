@@ -15,5 +15,6 @@ class notiController extends Controller
     {
         $message = '43;ABC;XYZ';
         event(new NotificationSent($message));
+        echo("OK");
     }
 }
