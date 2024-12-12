@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\web\devices;
 
 use App\Http\Controllers\Controller;
+use App\Models\clientRF;
 use Illuminate\Http\Request;
 use App\Models\device;
 use App\Models\deviceReport;
+use App\Models\deviceStatus;
+
 class listDeviceAndHistory extends Controller
 {
     public function index(Request $request)
@@ -65,10 +68,22 @@ class listDeviceAndHistory extends Controller
             $Model = $request->get('model') == null ? "":$request->get('model');
             $Serial = $request->get('serial') == null ? "":$request->get('serial');
             $topBot = $request->get('topBot') == null ? "":$request->get('topBot');
-            $status = device::addNewDevice($machineCode, $machineName, $line, $lane, $Model, $Serial, $topBot);
+
+            $numberSubdevice =  device::getCountListSubdevice($machineCode);
+            $numberalowSubdevice = device::getSetingNumberSubdevice($machineCode);
+            // dd($numberSubdevice);
+            // dd($numberalowSubdevice);
+            if($numberSubdevice < $numberalowSubdevice)
+            {
+                $status = device::addNewDevice($machineCode, $machineName, $line, $lane, $Model, $Serial, $topBot);
+            }
+            else
+            {
+                return "Error";
+            }
             if($status == true)
             {
-                return redirect()->route('listDeviceAndHistory');
+                return route('listDeviceAndHistory');
             }
             else
             {
@@ -110,17 +125,42 @@ class listDeviceAndHistory extends Controller
         }
     }
 
-    // public function deleteMachine(Request $request)
-    // {
-    //     if($request->get('machineCode') != null)
-    //     { 
-    //         $machineCode = $request->get('machineCode'); 
-    //         device::deleteMachineByCode($machineCode);
-    //         return 'OK';
-    //     }
-    //     else
-    //     {
-    //         return 'Error';
-    //     }
-    // }
+    public function deleteDevice(Request $request)
+    {
+        if($request->get('deviceID') != null)
+        { 
+            $deviceID = $request->get('deviceID'); 
+            device::deleteMachineByID($deviceID);
+            $listDevice = device::deviceAll();
+            return view('devices.listDeviceTable',['listDevice' => $listDevice]);
+        }
+        else
+        {
+            return 'Error';
+        }
+    }
+
+    public function deleteHistory(Request $request)
+    {
+        if($request->get('historyID') != null && $request->get('historyIDOK') != null)
+        { 
+            $historyID = $request->get('historyID');
+            $historyIDOK = $request->get('historyIDOK');
+            deviceStatus::deleteByID($historyID);
+            deviceStatus::deleteByID($historyIDOK);
+            deviceReport::deleteByIDHistory($historyID);
+            deviceReport::deleteByIDHistory($historyIDOK);
+
+            // refrest table
+            $dateForm = $request->get('timeForm') ;
+            $dateTo = $request->get('timeTo') ;
+            $dataSearch = $request->get('dataSearch') ;
+            $listHistoryReport  = deviceReport::listHistoryReportSearch( $dataSearch, $dateForm, $dateTo);
+            return view('devices.listHistoryReportTable',['listHistoryReport' => $listHistoryReport]);
+        }
+        else
+        {
+            return 'Error';
+        }
+    }
 }

@@ -19,6 +19,7 @@ class convertDb{
         'tula11' => 'serial', 
         'tula12' => 'topBot', 
         'tula13' => 'category', 
+        'tula14' => 'mode', 
     ];
 
     // tula_table2,   // Status device
@@ -50,15 +51,16 @@ class convertDb{
     ];
     // tula_table3,   // Client table
     public static $mapTable3 = [
-        'tula_Key' => 'clientID', 
+        'tula_Key' => 'RFID', 
         'tula1' => 'deviceID', 
-        'tula2' => 'deviceName', 
+        'tula2' => 'deviceCode', 
         'tula3' => 'clientAddr', 
         'tula4' => 'port', 
         'tula5' => 'status', 
         'tula6' => 'location_x',
         'tula7' => 'location_y',
-        'tula8' => 'region'
+        'tula8' => 'region',
+        'tula9' => 'numberDevice'
     ];
 
     // tula_table4,   // Machine plan
@@ -89,13 +91,14 @@ class convertDb{
     
     // tula_table6,   // Status report
     public static $mapTable6 = [
-        'tula_Key' => 'historyID', 
+        'tula_Key' => 'reportID', 
         'tula1' => 'deviceID', 
         'tula2' => 'historyID', 
         'tula3' => 'Line', 
         'tula4' => 'Lane', 
         'tula5' => 'time', 
         'tula6' => 'status', 
+        'tula7' => 'modeSystem', 
     ];
 
     // tula_table7,   // Setting system
@@ -160,6 +163,21 @@ class convertDb{
         'tula2' => 'action', 
         'tula3' => 'status', 
         'tula4' => 'description', 
+    ];
+    
+    // tula_table14, // Categories
+    public static $mapTable14 = [
+        'tula_Key' => 'callID', 
+        'tula1' => 'machineCode', 
+        'tula2' => 'line', 
+        'tula3' => 'lane', 
+        'tula4' => 'position', 
+        'tula5' => 'slot', 
+        'tula6' => 'urgent', 
+        'tula7' => 'status', 
+        'tula8' => 'time', 
+        'tula9' => 'userCall',
+        'tula10' => 'note',
     ];
 
     public static function  convertDataBase($Datas, $mapTable, $isConvert = true)

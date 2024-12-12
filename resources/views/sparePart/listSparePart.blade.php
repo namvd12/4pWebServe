@@ -1,6 +1,6 @@
 @extends("layouts.master")
 @section("ccs")
-    <link href="{{ asset('ccs/table.css')}}" rel="stylesheet" />
+    <link href="{{ asset('css/table.css')}}" rel="stylesheet" />
 @endsection
 @section("js")
     <meta name="csrf-token" content="{{ csrf_token() }}">

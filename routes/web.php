@@ -101,6 +101,10 @@ Route::middleware(['role'])->group(function(){
 
     Route::post('deleteMachine','App\Http\Controllers\web\devices\listDeviceAndHistory@deleteMachine')->name('deleteMachine');
 
+    Route::post('deleteHistory','App\Http\Controllers\web\devices\listDeviceAndHistory@deleteHistory')->name('deleteHistory');
+    
+    Route::post('deleteDevice','App\Http\Controllers\web\devices\listDeviceAndHistory@deleteDevice')->name('deleteDevice');
+
     /*Export history */
     Route::get('viewExport','App\Http\Controllers\web\devices\historyExportController@index')->name('viewExport');
 
@@ -151,6 +155,7 @@ Route::middleware(['role'])->group(function(){
     /*User */
     Route::post('editUser','App\Http\Controllers\web\user\userController@editUser')->name('editUser');
 
+
     Route::post('saveEditUser','App\Http\Controllers\web\user\userController@saveEditUser')->name('saveEditUser');
 
     Route::post('deleteUser','App\Http\Controllers\web\user\userController@deleteUser')->name('deleteUser');
@@ -158,38 +163,36 @@ Route::middleware(['role'])->group(function(){
     Route::post('addNewUser','App\Http\Controllers\web\user\userController@addNewUser')->name('addNewUser');
 
     Route::post('saveAddNewUser','App\Http\Controllers\web\user\userController@saveAddNewUser')->name('saveAddNewUser');
-    });
 
+    /*RF client*/
+    Route::post('editRF','App\Http\Controllers\web\user\userController@editRF')->name('editRF');
+
+    Route::post('editRFRegion','App\Http\Controllers\web\user\userController@editRFRegion')->name('editRFRegion');
+
+    Route::post('saveEditRF','App\Http\Controllers\web\user\userController@saveEditRF')->name('saveEditRF');
+
+    Route::post('addNewRF','App\Http\Controllers\web\user\userController@addNewRF')->name('addNewRF');
+
+    Route::post('saveAddNewRF','App\Http\Controllers\web\user\userController@saveAddNewRF')->name('saveAddNewRF');
+
+    Route::post('deleteRF','App\Http\Controllers\web\user\userController@deleteRF')->name('deleteRF');
+    
+    Route::post('addNewRFRegion','App\Http\Controllers\web\user\userController@addNewRFRegion')->name('addNewRFRegion');
+
+    Route::post('saveRFRegion','App\Http\Controllers\web\user\userController@saveRFRegion')->name('saveRFRegion');
+    });
+    
+    // call material
+    Route::post('viewCallMaterialDay','App\Http\Controllers\web\callMaterial\callMaterialController@viewCallMaterialDay')->name('viewCallMaterialDay');
+    Route::get('viewCallMaterial','App\Http\Controllers\web\callMaterial\callMaterialController@viewCallMaterial')->name('viewCallMaterial');
+    Route::post('updateStatusCall','App\Http\Controllers\web\callMaterial\callMaterialController@updateStatusCall')->name('updateStatusCall');
+
+    Route::post('updateStatusOkAll','App\Http\Controllers\web\callMaterial\callMaterialController@updateStatusOkAll')->name('updateStatusOkAll');
 });
 
 // test send mail
 Route::get('sendMail','App\Http\Controllers\Controller@view')->name('sendMail');
 
-// Route::resource('/admin','App\Http\Controllers\adminController')->middleware('role');
-
-// Route::get('/', function () {
-//     return view('home');
-// })->name('home');
-
-// Route::get('/products/{id}',[
-//     ProductsController::class,
-//     'detail'
-// ])->where('id','[0-9]+');
-// Route::get('/users',function()
-// {
-//     return 'this is user page';
-// });
-// //response an array
-// Route::get('/device',function(){
-//     return ['device 1', 'device 2', 'device 3'];
-// });
-// Route::get('/infor',function(){
-//     return response()->json()([
-//         'name' => 'device1',
-//         'SN' => 'ABC'
-//     ]);
-// });
-// //response another request = redirect
-// Route::get('/something',function(){
-//     return redirect('/');
-// });
+// test notification
+Route::get('noti','App\Http\Controllers\web\notification\notiController@view')->name('noti');
+Route::get('sendCallMaterial','App\Http\Controllers\web\notification\notiController@sendNotification')->name('sendCallMaterial');

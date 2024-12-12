@@ -116,6 +116,7 @@ class deviceReport extends Model
         {
             $datas = deviceReport::select("tula2")
                                 ->where("tula6","NG")
+                                ->whereIn("tula7",['run',''])
                                 ->WhereRaw("str_to_date(tula5,'%d-%m-%Y') BETWEEN \"$timeFrom\" AND \"$timeTo\"")
                                 ->orderBy('tula_Key','DESC')
                                 ->get();
@@ -184,6 +185,7 @@ class deviceReport extends Model
             {
                 $listHistory[$key]['timeOK'] =  $listHistoryOK_NearNG[0]['time'];
                 $listHistory[$key]['statusOK'] = "OK";
+                $listHistory[$key]['historyIDOK'] = $listHistoryOK_NearNG[0]['historyID'];;
             }
         }
         return $listHistory;
@@ -209,5 +211,10 @@ class deviceReport extends Model
         }
         
         return array_merge($History, $deviceInfor[0]);
+    }
+
+    public static function deleteByIDHistory($id)
+    {
+        deviceReport::where('tula2', $id)->delete();
     }
 }

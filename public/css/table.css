@@ -15,5 +15,10 @@ td {
     white-space: nowrap;
 }
 .container {
-    max-width: 1600px;
+    max-width: 1800px;
+}
+
+.datePicker {
+    display: inline-block;
+    width: auto;
 }
