@@ -30,9 +30,9 @@ class callMaterial extends Model
         return $datas;
     }
 
-    public static function updateStatus($callID, $status, $note)
+    public static function updateStatus($callID, $status, $note, $timeHandle)
     {
-        callMaterial::where('tula_key', $callID)->update(['tula7' => $status,'tula10' => $note]);
+        callMaterial::where('tula_key', $callID)->update(['tula7' => $status,'tula10' => $note, 'tula11' => $timeHandle]);
     }
 
     public static function updateStatusOKAll()

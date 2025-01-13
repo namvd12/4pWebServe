@@ -14,6 +14,7 @@ use App\Models\User;
             <th>User</th>
             <th>Urgent</th>
             <th>Status</th>
+            <th>Time handle</th>
             <th>Note</th>
             <th></th>
         </tr>
@@ -101,6 +102,7 @@ use App\Models\User;
             @endphp
             <td style="color: {{ $colorUrgent }} ">{{ $call->tula6}}</td>
             <td style="color: {{ $colorStatus }} ">{{ $call->tula7 }}</td>
+            <td>{{ $call->tula11 }}</td>
             <td>{{ $call->tula10 }}</td>
             @if ($call->tula7 == 'WAIT')
                 <td>

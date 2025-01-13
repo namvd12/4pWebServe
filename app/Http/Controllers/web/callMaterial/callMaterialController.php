@@ -48,7 +48,8 @@ class callMaterialController extends Controller
             $callID = $request->get('callID');
             $status = $request->get('status');
             $note = $request->get('note');
-            callMaterial::updateStatus($callID, $status, $note);
+            $timeHandle = now()->format('d-m-Y H:i');
+            callMaterial::updateStatus($callID, $status, $note, $timeHandle);
             return "OK";
         }
         else
