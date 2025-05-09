@@ -5,10 +5,16 @@ namespace App\Http\Controllers\web\login;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\user;
+use App\Models\Permission;
 class loginController extends Controller
 {
     public function index(Request $request)
     {
+        if($request->get('nextRequest') != null)
+        {
+            $nextRequest = $request->get('nextRequest');
+            return view("login",['nextRequest' => $nextRequest]);
+        }
         return view("login");
     }
 
@@ -18,6 +24,8 @@ class loginController extends Controller
         {
             $user = $request->get('user');
             $pass = $request->get('password'); 
+            $nextRequest = $request->get('nextRequest'); 
+
             $userInfor = user::login($user, $pass);
             if($userInfor != null)
             {
@@ -27,7 +35,22 @@ class loginController extends Controller
                         'userKey' => $userInfor['userKey'],
                         'userFullName' => $userInfor['fullName'],
                         ]);
-                return redirect()->route('maintenacePlan');
+                if($nextRequest != null)
+                {
+                    return redirect($nextRequest);
+                }
+                else
+                {
+                    $hasPermission = Permission::userHasPermission(['View_callMaterial']);
+                    if($hasPermission)
+                    {
+                        return redirect()->route('viewCallMaterial');
+                    }
+                    else
+                    {
+                        return redirect()->route('maintenacePlan');
+                    }
+                }
             }
             else
             {
@@ -43,6 +66,6 @@ class loginController extends Controller
     {
         session()->forget('userKey');
         session()->forget('userFullName');
-        return view('login');
+        return view("login");
     }
 }

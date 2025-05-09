@@ -48,7 +48,7 @@ function saveProfile() {
     const srcImage = document.getElementById("avatar").getAttribute("src");
     const avatar = srcImage.split(",")[1]; // get base64
 
-    if (!validateEmail(email)) {
+    if (email != "" && !validateEmail(email)) {
         alert("Error format email !!!");
         return;
     }
@@ -142,6 +142,7 @@ function saveConfig() {
         success: function (response) {
             if (response.status == "Error folder") {
                 warningFolderReport.style.display = "flex";
+                alert("error");
             } else if (response.status != "Error") {
                 // handle response
                 alert("Save done");
@@ -160,9 +161,9 @@ function inputChange(element) {
 }
 function modeChange() {
     const mode = document.getElementById("modeSelect");
-    if (mode.value == "running") {
+    if (mode.value == "run") {
         mode.style.color = "limegreen";
-    } else if (mode.value == "testing") {
+    } else if (mode.value == "test") {
         mode.style.color = "brown";
     } else if (mode.value == "update") {
         mode.style.color = "blue";
@@ -616,6 +617,245 @@ function saveAddUser() {
                 listSettingClick("userAllTab");
             } else {
                 alert("Error");
+            }
+        },
+        error: function (xhr) {
+            console.log(xhr.responseText);
+        },
+    });
+}
+
+/*RF manager */
+function editRF(RFID) {
+    $.ajax({
+        url: "editRF",
+        type: "POST",
+        data: {
+            _token: $('meta[name="csrf-token"]').attr("content"),
+            RFID: RFID,
+        },
+        success: function (response) {
+            if (response != null) {
+                $("#RFEditTab").html(response);
+                listSettingClick("RFEditTab");
+            } else {
+                alert("Error");
+            }
+        },
+        error: function (xhr) {
+            console.log(xhr.responseText);
+        },
+    });
+}
+function editRFRegion(RFID) {
+    $.ajax({
+        url: "editRFRegion",
+        type: "POST",
+        data: {
+            _token: $('meta[name="csrf-token"]').attr("content"),
+            RFID: RFID,
+        },
+        success: function (response) {
+            if (response != null) {
+                $("#RFEditTabRegion").html(response);
+                listSettingClick("RFEditTabRegion");
+            } else {
+                alert("Error");
+            }
+        },
+        error: function (xhr) {
+            console.log(xhr.responseText);
+        },
+    });
+}
+
+function saveRF() {
+    rf_id = document.getElementById("rf_id").value;
+    device_id = document.getElementById("device_id").value;
+    device_code = document.getElementById("device_code").value;
+    client_addr = document.getElementById("client_addr").value;
+    client_port = document.getElementById("client_port").value;
+    region_name = document.getElementById("region_name").value;
+    numberDevice = document.getElementById("numberDevice").value;
+
+    $.ajax({
+        url: "saveEditRF",
+        type: "POST",
+        data: {
+            _token: $('meta[name="csrf-token"]').attr("content"),
+            rf_id: rf_id,
+            device_id: device_id,
+            device_code: device_code,
+            client_addr: client_addr,
+            client_port: client_port,
+            region_name: region_name,
+            numberDevice: numberDevice,
+        },
+        success: function (response) {
+            if (response != null) {
+                alert("Done");
+                location.reload();
+                listSettingClick("RFManagerTab");
+            } else {
+                alert("Error");
+            }
+        },
+        error: function (xhr) {
+            console.log(xhr.responseText);
+        },
+    });
+}
+
+function selectMachineRF() {
+    var MachineID = document.getElementById("device_id").value;
+    $.ajax({
+        url: "getMachineInfor",
+        type: "POST",
+        data: {
+            _token: $('meta[name="csrf-token"]').attr("content"),
+            machineID: MachineID,
+        },
+        success: function (response) {
+            if (response != "Error") {
+                document.getElementById("device_code").value =
+                    response.deviceCode;
+            }
+        },
+        error: function (xhr) {
+            console.log(xhr.responseText);
+        },
+    });
+}
+
+function addNewRF() {
+    $.ajax({
+        url: "addNewRF",
+        type: "POST",
+        data: {
+            _token: $('meta[name="csrf-token"]').attr("content"),
+        },
+        success: function (response) {
+            if (response != null) {
+                $("#RFAddTab").html(response);
+                listSettingClick("RFAddTab");
+            } else {
+                alert("Error");
+            }
+        },
+        error: function (xhr) {
+            console.log(xhr.responseText);
+        },
+    });
+}
+function addNewRFRegion() {
+    $.ajax({
+        url: "addNewRFRegion",
+        type: "POST",
+        data: {
+            _token: $('meta[name="csrf-token"]').attr("content"),
+        },
+        success: function (response) {
+            if (response != null) {
+                $("#RFAddRegionTab").html(response);
+                listSettingClick("RFAddRegionTab");
+            } else {
+                alert("Error");
+            }
+        },
+        error: function (xhr) {
+            console.log(xhr.responseText);
+        },
+    });
+}
+
+function saveAddRF() {
+    const client_addr = document.getElementById("client_addr_add").value;
+    const client_port = document.getElementById("client_port_add").value;
+    const device_code = document.getElementById("device_code_add").value;
+    const region = document.getElementById("region_add").value;
+    const numberDevice = document.getElementById("numberDevice_add").value;
+
+    if (
+        client_addr == "" ||
+        client_port == "" ||
+        device_code == "" ||
+        region == "" ||
+        numberDevice == ""
+    ) {
+        alert("Please fill out all required fields.");
+        return;
+    }
+    $.ajax({
+        url: "saveAddNewRF",
+        type: "POST",
+        data: {
+            _token: $('meta[name="csrf-token"]').attr("content"),
+            client_addr: client_addr,
+            client_port: client_port,
+            device_code: device_code,
+            region: region,
+            numberDevice: numberDevice,
+        },
+        success: function (response) {
+            if (response.status == "OK") {
+                alert("Done");
+                location.reload();
+                $("#RFManagerTab").html(response);
+                listSettingClick("RFManagerTab");
+            } else {
+                alert("Error: Duplicate device");
+            }
+        },
+        error: function (xhr) {
+            console.log(xhr.responseText);
+        },
+    });
+}
+
+function deleteRF(key) {
+    if (confirm("Do you want delete?")) {
+        if (key != null) {
+            $.ajax({
+                url: "deleteRF",
+                type: "POST",
+                data: {
+                    _token: $('meta[name="csrf-token"]').attr("content"),
+                    key: key,
+                },
+                success: function (response) {
+                    if (response.status == "OK") {
+                        location.reload();
+                        listSettingClick("RFManagerTab");
+                    } else {
+                        alert("Error");
+                    }
+                },
+                error: function (xhr) {
+                    console.log(xhr.responseText);
+                },
+            });
+        }
+    }
+}
+
+function saveAddRFRegion() {
+    line_region = document.getElementById("line_region").value;
+    region_add = document.getElementById("region_add").value;
+    $.ajax({
+        url: "saveRFRegion",
+        type: "POST",
+        data: {
+            _token: $('meta[name="csrf-token"]').attr("content"),
+            line_region: line_region,
+            region_add: region_add,
+        },
+        success: function (response) {
+            if (response.status == "OK") {
+                alert("Done");
+                location.reload();
+                listSettingClick("RFManagerTab");
+            } else {
+                alert("Error: Duplicate region");
             }
         },
         error: function (xhr) {

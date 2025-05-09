@@ -4,18 +4,18 @@
 @section("js")
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <script src="{{asset('js/newMachinePlan.js')}}"></script>
+    <script src="{{asset('js/listDevice.js')}}"></script>
 @endsection
 @section("content")
     <h2 class="text-center"> New device</h2>
     <div class="row">
         <div class="col-3"></div>
         <div class="col-5">
-            <form action="{{ route('saveNewDevice') }}" method="POST" >
+            <form action="">
                 @csrf
                 <div class="mb-3 mt-3">
                     <label class="mb-2" > Device code: <span style="color: red">*</span></label>
-                    <input type="text" class="form-control"  id="machineCode" name="machineCode" placeholder="Enter device code" required>
+                    <input type="text" class="form-control"  id="machineCode" name="machineCode" placeholder="Enter device code" pattern="[A-Za-z0-9.]+" required>
                 </div>
                 <div class="mb-3 mt-3">
                     <label class="mb-2" > Device name: <span style="color: red">*</span></label>
@@ -45,7 +45,7 @@
                     <input type="text" class="form-control" id="lane" name="lane" placeholder="Enter lane" required>
                 </div>
                 <div class="d-inline ">
-                    <button  type="submit" class="btn btn-success">Save</button>
+                    <button type="button" class="btn btn-success" onclick="saveAddnewDevice()">Save</button>
                     <a href="{{ route('listDeviceAndHistory') }}" class="btn btn-outline-info btn-block mb-3 mt-3" type="submit">Back</a>                     
                 </div>
             </form>

@@ -27,6 +27,13 @@ class device extends Model
         $devices = convertDb::convertDataBase($datas,convertDb::$mapTable1, $convert);
         return $devices;
     }
+    public static function deviceAllNotSubdevice($convert = true)
+    {
+        $datas = device::where('tula1','not like','%.%')->get();
+
+        $devices = convertDb::convertDataBase($datas,convertDb::$mapTable1, $convert);
+        return $devices;
+    }
 
     public static function findOneDevice($whereData, $convert = true)
     {       
@@ -96,6 +103,10 @@ class device extends Model
     {
         device::where('tula1', $deviceCode)->delete();
     }
+    public static function deleteMachineByID($deviceID)
+    {
+        device::where('tula_key', $deviceID)->delete();
+    }
 
     public static function editCategoriOnDeviceByCode($deviceCode, $categoryID)
     {
@@ -123,4 +134,53 @@ class device extends Model
     {
         device::where('tula13', $idCat)->update(['tula13' => ""]);
     }
+
+    public static function getListSubdevice($deviceCode)
+    {
+        $datas = device::select('tula1')->where('tula1', 'like','%'.$deviceCode.'.%')->get();
+        $listDevices = convertDb::convertDataBase($datas,convertDb::$mapTable1);
+        return $listDevices;
+    }
+
+    public static function getCountListSubdevice($deviceCode)
+    {
+        $device = device::checkIsSubdevice($deviceCode);
+      
+        if($device == null)
+        {
+            return 0;
+        }
+        $datas = device::getListSubdevice($device);
+        return count($datas);
+    }
+
+    public static function checkIsSubdevice($deviceCode)
+    {
+        $arrDevice = explode(".", $deviceCode); 
+        if(isset($arrDevice))
+        {
+            return $arrDevice[0];
+        }
+        else
+        {
+            return null;
+        }
+    }
+    
+    public static function getSetingNumberSubdevice($deviceCode)
+    {
+        $device = device::checkIsSubdevice($deviceCode);
+      
+        if($device == null)
+        {
+            return 2;
+        }
+        $datas = clientRF::getRFinforByDeviceCode($device);
+        if($datas == null)
+        {
+            return 2;
+        }
+        return  $datas[0]['numberDevice'];
+    }
+
 }

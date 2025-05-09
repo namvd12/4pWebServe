@@ -41,3 +41,5 @@ Route::post('testPHP/user/logout.php','App\Http\Controllers\api\user\logoutContr
 Route::post('testPHP/user/resetPassword.php','App\Http\Controllers\api\user\ResetPasswordController@reset');
 
 Route::post('sendNotification', 'App\Http\Controllers\api\pushNotiController@push');
+
+Route::post('sendCallMaterial','App\Http\Controllers\api\notiCallMaterial\notiMaterialController@sendCallMaterial');

@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class checkRole
 {
-    private $timeout = 2;
+    private $timeout = 24*7;
     /**
      * Handle an incoming request.
      *
@@ -26,6 +26,9 @@ class checkRole
                 return $next($request);
             }
         }
-        return redirect()->route('login');
+        $fullPath = $request->fullUrl();
+        // $queryString = $request->getQueryString();
+        // $fullPath = $queryString ? $path . '?' . $queryString : $path;
+        return redirect()->route('login',['nextRequest' => $fullPath]);
     }
 }

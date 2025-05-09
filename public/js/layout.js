@@ -4,6 +4,8 @@ $(document).ready(function () {
     navLinks.forEach((element) => {
         if (element.href.includes(activePage)) {
             element.classList.add("active");
+            // element.style.backgroundColor = "black";
+            // element.style.color = "white";
         }
     });
 });

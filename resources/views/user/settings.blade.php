@@ -1,7 +1,7 @@
 @extends("layouts.master")
 @section("ccs")
-    <link href="{{ asset('ccs/setting.css')}}" rel="stylesheet" />
-    <link href="{{ asset('ccs/table.css')}}" rel="stylesheet" />
+    <link href="{{ asset('css/setting.css')}}" rel="stylesheet" />
+    <link href="{{ asset('css/table.css')}}" rel="stylesheet" />
 @endsection
 @section("js")
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -12,13 +12,13 @@
    <div class="row">
         <div class="col-md-2 col-xl-3">
             <div class="card">
-                <div class="card-header" style="background-color: whitesmoke; font-size: 130%">Setting</div>
+                <div class="card-header" style="background-color: whitesmoke; font-size: 130%">Settings</div>
                 <div class="card-body">
                     <div class="list-group list-group-flush">
                         <a class="list-group-item list-group-item-action" onclick="listSettingClick('profileTab')">Profile</a>
                         <a class="list-group-item list-group-item-action" onclick="listSettingClick('passwordTab')">Password</a>                
                         <a class="list-group-item list-group-item-action" onclick="listSettingClick('configTab')">Config System</a> 
-                        @if($hasPermission) 
+                        @if($hasPermissionViewUser) 
                             <a class="list-group-item list-group-item-action dropdown-toggle" data-bs-toggle="dropdown">Categories</a> 
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" onclick="listSettingClick('categoriesListTab')">Categories List</a></li>
@@ -27,7 +27,9 @@
                             <a class="list-group-item list-group-item-action dropdown-toggle" data-bs-toggle="dropdown">Admin</a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" onclick="listSettingClick('userAllTab')">Users</a></li>
+                                @if($hasPermissionViewRFClient)
                                 <li><a class="dropdown-item" onclick="listSettingClick('RFManagerTab')">RF clients</a></li>
+                                @endif
                                 <li><a class="dropdown-item" onclick="listSettingClick('modeTab')">Mode system</a></li>
                             </ul>
                         @endif
@@ -48,6 +50,9 @@
                 @include('user.categoriesEditTab')
                 @include('user.UsereditTab')
                 @include('user.UserAddTab')
+                @include('user.RFeditTab')
+                @include('user.RFAddTab')
+                @include('user.RFAddRegionTab')
             </div>
         </div>
    </div>

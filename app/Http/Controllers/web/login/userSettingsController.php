@@ -49,14 +49,17 @@ class userSettingsController extends Controller
             $listCat = categories::getAll();
             
             // check permission to show admin area
-            $hasPermission = Permission::userHasPermission(['Edit_user','View_user','Delete_user']);
+            $hasPermissionViewUser = Permission::userHasPermission(['Edit_user','View_user','Delete_user']);
+
+            $hasPermissionViewRFClient = Permission::userHasPermission(['View_setupSystem','Edit_setupSystem','Delete_setupSystem']);
             return view('user.settings',['userInfor' => $userInfor,
                                         'config' => $config,
                                         'listUser' => $listUser,
                                         'listRF' => $listRF,
                                         'listDevice'=> $listDevice,
                                         'listCat' => $listCat,
-                                        'hasPermission' => $hasPermission]);
+                                        'hasPermissionViewUser' => $hasPermissionViewUser,
+                                        'hasPermissionViewRFClient' => $hasPermissionViewRFClient]);
         }
         else
         {
@@ -66,8 +69,7 @@ class userSettingsController extends Controller
 
     public function saveProfile(Request $request)
     {
-        if( $request->get('userName') != null && $request->get('fullName') != null 
-            && $request->get('phone') != null && $request->get('email') != null )
+        if( $request->get('userName') != null)
         {
             $avatar = $request->get('avatar');
             $fullName = $request->get('fullName');

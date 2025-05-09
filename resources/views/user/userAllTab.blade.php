@@ -32,8 +32,10 @@
                             <td>{{ $user['groupName'] }}</td>
                             <td>{{ $user['topic'] }}</td>
                             <td>
-                                <a class="btn btn-outline-primary" onclick="editUser('{{ $user['userID'] }}')">Edit</a>
-                                @if($user['userName'] != 'admin')
+                                @if($user['position'] != 'Super_admin')
+                                    <a class="btn btn-outline-primary" onclick="editUser('{{ $user['userID'] }}')">Edit</a>
+                                @endif
+                                @if($user['position'] != 'Admin' && $user['position'] != 'Super_admin')
                                     <a class="btn btn-outline-primary" onclick="deleteUser('{{ $user['userKey'] }}')">Delete</a>
                                 @endif
                             </td>

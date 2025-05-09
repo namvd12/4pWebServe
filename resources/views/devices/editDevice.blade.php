@@ -44,11 +44,11 @@
                 </div>
                 <div class="mb-3 mt-3">
                     <label class="mb-2" > Line: <span style="color: red">*</span></label>
-                    <input type="text" class="form-control" id="line" name="line" placeholder="Enter Line" value="{{ $device['line'] }}" required>
+                    <input type="number" class="form-control" id="line" name="line" placeholder="Enter Line" value="{{ $device['line'] }}" required>
                 </div>
                 <div class="mb-3 mt-3">
                     <label class="mb-2" > Lane: <span style="color: red">*</span></label>
-                    <input type="text" class="form-control" id="lane" name="lane" placeholder="Enter lane" value="{{ $device['lane'] }}" required>
+                    <input type="number" class="form-control" id="lane" name="lane" placeholder="Enter lane" value="{{ $device['lane'] }}" required>
                 </div>
                 <div class="d-inline ">
                     <button  type="submit" class="btn btn-success">Save</button>

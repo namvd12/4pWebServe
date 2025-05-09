@@ -2,7 +2,10 @@
     <div class="card">
         <div class="card-header d-flex justify-content-between" style="background-color: whitesmoke; font-size: 130%">
             <label for="">User Edit</label>
-            <a class="btn btn-primary" onclick="saveAddUser()">Save</a>
+            <div>
+                <a class="btn btn-primary" onclick="saveAddUser()">Save</a>
+                <a class="btn btn-outline-primary" onclick="listSettingClick('userAllTab')">Cancel</a>
+            </div>
         </div>
         <div class="card-body">
             @if(isset($listPosition))

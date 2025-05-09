@@ -118,6 +118,10 @@ class deviceController extends Controller
         // read data 
         $content = "";
         $fileImage = $device[0]['tula7'];
+        if($device[0]['tula14'] == "")
+        {
+            $device[0]['tula14'] = "Run";
+        }
         if(file_exists($device[0]['tula7']))
         {
             $myfile = fopen("$fileImage", "r") or die("Unable to open file!");

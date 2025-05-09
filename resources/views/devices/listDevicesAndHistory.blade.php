@@ -1,7 +1,10 @@
+@php
+use App\Models\Permission;
+@endphp
 @extends("layouts.master")
 @section("ccs")
-    <link href="{{ asset('ccs/table.css')}}" rel="stylesheet" />
-    <link href="{{ asset('ccs/image.css')}}" rel="stylesheet" />
+    <link href="{{ asset('css/table.css')}}" rel="stylesheet" />
+    <link href="{{ asset('css/image.css')}}" rel="stylesheet" />
 @endsection
 @section("js")
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -23,9 +26,9 @@
             <label class="m-1" style="font-size: 20px">Status data</label>
             <input class=" m-1" type="text" name="dataHistorySearch" id="dataHistorySearch">
             <label class="m-1" style="font-size: 20px">From</label>
-            <input class="mx-2" type="date" name="timeFrom" id="timeFrom" value="{{ date('Y-m-d') }}">
+            <input class="form-control datePicker mx-2" type="date" name="timeFrom" id="timeFrom" value="{{ date('Y-m-d') }}">
             <label class="m-1" style="font-size: 20px">To</label>
-            <input class="mx-2" type="date" name="timeTo" id="timeTo" value="{{ date('Y-m-d') }}">
+            <input class="form-control datePicker mx-2" type="date" name="timeTo" id="timeTo" value="{{ date('Y-m-d') }}">
             <a class="btn btn-outline-primary mx-2" onclick="searchReportClick()">Search for report</a>
         </div>
     </div>
@@ -90,6 +93,9 @@
                                 $deviceID = $device['deviceID'];
                             @endphp
                             <a href="{{ route('editDevice',['deviceID' => $deviceID])}}" class="btn btn-outline-secondary">Edit</a>
+                            @if (Permission::userHasPermission(['Delete_user']))     
+                                <a class="btn btn-outline-danger" onclick="deleteDevice('{{ $deviceID }}')">Delete</a>
+                            @endif
                         </td>                           
                     </tr>
                     @endforeach

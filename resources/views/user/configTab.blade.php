@@ -2,7 +2,10 @@
     <div class="card">
         <div class="card-header d-flex justify-content-between" style="background-color: whitesmoke; font-size: 130%">
             <label for="">Config system</label>
-            <button type="button" class="btn btn-primary" onclick="saveConfig()">Save</button>
+            <div>
+                <button type="button" class="btn btn-primary" onclick="saveConfig()">Save</button>
+                <a href="javascript:window.location.href=window.location.href" class="btn btn-outline-primary">Cancel</a>
+            </div>
         </div>
         <div class="card-body">
             <label for="">Time NG</label>

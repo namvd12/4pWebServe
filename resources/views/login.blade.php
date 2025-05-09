@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="{{ asset('ccs/login.css')}}" rel="stylesheet" />
+    <link href="{{ asset('css/login.css')}}" rel="stylesheet" />
 </head>
 
 <body>
@@ -26,7 +26,11 @@
     <div class="container login_container ">
         <div class="row justify-content-center mt-5">
             <div class="col-lg-4">
-                <form class="login" method="post" action="{{ route('loging') }}">
+                @if (isset($nextRequest))
+                    <form class="login" method="post" action="{{ route('loging',['nextRequest' => $nextRequest])}}">
+                @else    
+                    <form class="login" method="post" action="{{ route('loging')}}">
+                @endif
                     @csrf
                     <h2 class="text-center">Login Saban-Wi</h2>
                     <div class="text-center text-success font-weight-bold">

@@ -57,10 +57,10 @@ class categoriesController extends Controller
             //save new categories
             categories::editCategories($catID, $nameCategories, $actionCategories, $statusCategories, $description);
             // save categories in devices
+            // clear old category
+            device::deleteCatOnDevice($catID);
             if($listCodeDevice  != null)
             {
-                // clear old category
-                device::deleteCatOnDevice($catID);
                 foreach($listCodeDevice as $deviceCode)
                 {
                     device::editCategoriOnDeviceByCode($deviceCode, $catID);

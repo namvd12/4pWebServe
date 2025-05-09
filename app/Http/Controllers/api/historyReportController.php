@@ -101,7 +101,7 @@ class historyReportController extends Controller
 		else
 		{
 			$response["status"] = 1;
-			$response["message"] = "NO DATA";
+			$response["mes sage"] = "NO DATA";
 		}
         return json_encode($response);
     }
